@@ -1,5 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import { useAtom } from "jotai";
+import { userAtom } from 'store'
+import { isConnected } from 'store'
 import PropertyCard from '../components/PropertyCard/PropertyCard'
 import styles from '../styles/Home.module.css'
 import APIManager from './api/axiosMethods'
@@ -25,6 +28,8 @@ export default function Home() {
     await APIManager.logOut();
   }
 
+  const [user] = useAtom(userAtom);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -39,7 +44,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Salut {user?.email ?? "étranger"} !
         </h1>
 
         <PropertyCard description={"WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA "}/>
