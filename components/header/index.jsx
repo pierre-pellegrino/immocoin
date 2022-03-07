@@ -1,9 +1,11 @@
+import headerStyles from "./header.module.scss";
+
 const Header = () => {
   return (
-    <header>
+    <header className={headerStyles.header}>
       <nav>
-        <ul>
-          <li>ImmoCoin</li>
+        <ul className={headerStyles.navItems}>
+          <li className={headerStyles.title}>ImmoCoin</li>
         </ul>
       </nav>
     </header>
