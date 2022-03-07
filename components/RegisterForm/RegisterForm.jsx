@@ -8,7 +8,6 @@ const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [_user, setUser] = useAtom(userAtom);
-  const [_authToken, setAuthToken] = useAtom(authTokenAtom);
 
   const data = {
     user: {
@@ -20,7 +19,6 @@ const RegisterForm = () => {
   const handleRegister = async () => {
     const response = await APIManager.register(data);
     setUser(response.data);
-    setAuthToken(response.headers.authorization);
   };
 
   return (

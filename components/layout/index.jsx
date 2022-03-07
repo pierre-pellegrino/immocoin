@@ -1,25 +1,33 @@
 import Cookies from "js-cookie";
-import { Provider, useAtom } from "jotai";
-import { useEffect } from "react";
-import { userAtom, authTokenAtom } from "store";
+import { useAtom } from "jotai";
+import { useLayoutEffect } from "react";
+import { userAtom } from "store";
 import Header from "../header";
+import APIManager from "pages/api/axiosMethods";
 
 const Layout = ({ children }) => {
   const [_user, setUser] = useAtom(userAtom);
-  const [_authToken, setAuthToken] = useAtom(authTokenAtom);
 
-  useEffect(() => {
-    setAuthToken(Cookies.get("token"));
-    setUser
-  }, []);
+  useLayoutEffect(() => {
+    const getUser = async () => {
+      try {
+        const response = await APIManager.logInFromToken();
+        setUser(response.data);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    if (Cookies.get("token")) getUser();
+  }, [setUser]);
 
   return (
-    <Provider>
+    <>
       <Header />
       <main>
         {children}
       </main>
-    </Provider>
+    </>
   );
 };
 

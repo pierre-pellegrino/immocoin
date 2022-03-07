@@ -32,4 +32,8 @@ export default class APIManager {
     Cookies.remove('token')
     return response;
   }
+  static async logInFromToken() {
+    const response = await API.get("/member-data");
+    return response;
+  }
 }

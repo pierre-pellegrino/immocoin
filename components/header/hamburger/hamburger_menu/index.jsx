@@ -2,6 +2,8 @@ import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 import APIManager from "pages/api/axiosMethods";
+import { useAtom } from "jotai";
+import { userAtom, isConnectedAtom } from "store";
 import {
   navItems,
   menu,
@@ -12,8 +14,12 @@ import {
 } from "./hamburger_menu.module.scss";
 
 const HamburgerMenu = ({ connected, menuOpened }) => {
+  const [isConnected] = useAtom(isConnectedAtom);
+  const [user, setUser] = useAtom(userAtom);
+
   const handleLogOut = async () => {
     await APIManager.logOut();
+    setUser(null);
   }
 
   let content = (
@@ -55,7 +61,7 @@ const HamburgerMenu = ({ connected, menuOpened }) => {
     </>
   );
 
-  if (connected) {
+  if (isConnected ?? connected) {
     content = (
       <>
         <li className={profile}>
