@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { form, input, inputWrapper, btn } from '../LoginForm/form.module.scss';
+import APIManager from '../../pages/api/axiosMethods';
 
 const RegisterForm = () => {
   const [email, setEmail] = useState("");
@@ -10,6 +11,10 @@ const RegisterForm = () => {
       email: email,
       password: pwd
     }
+  }
+
+  const handleRegister = async () => {
+    await APIManager.register(data);
   }
 
   return (
@@ -26,7 +31,7 @@ const RegisterForm = () => {
         <label htmlFor="password-input">Password</label>
       </div>
 
-      <button className={btn} type="button" onClick={() => console.log(data)}>Sign up</button>
+      <button className={btn} type="button" onClick={() => handleRegister()}>Sign up</button>
     </div>
   );
 };
