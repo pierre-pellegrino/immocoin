@@ -1,5 +1,5 @@
 import Link from "next/link";
-import HamburgerMenu from "./hamburger_menu";
+import HamburgerIcon from "./hamburger";
 import { header, nav, navItems, title, hamburger } from "./header.module.scss";
 import Searchbar from "./searchbar";
 
@@ -15,7 +15,7 @@ const Header = () => {
           </li>
           <li><Searchbar /></li>
           <li className={hamburger}>
-            <HamburgerMenu />
+            <HamburgerIcon />
           </li>
         </ul>
       </nav>

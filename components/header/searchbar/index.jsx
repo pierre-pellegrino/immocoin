@@ -34,7 +34,13 @@ const Searchbar = () => {
           ></line>
         </svg>
       </label>
-      <input type="text" placeholder="Rechercher" id="searchBar" className={search} />
+      <input
+        type="text"
+        placeholder="Rechercher"
+        id="searchBar"
+        className={search}
+        autoComplete="off"
+      />
     </div>
   );
 };
