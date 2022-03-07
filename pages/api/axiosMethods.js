@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from 'js-cookie';
 
-const API = axios.create({ baseURL: 'http://localhost:3000' });
+const API = axios.create({ baseURL: 'https://api-immocoin.herokuapp.com' });
 
 API.interceptors.request.use(({ headers, ...config }) => ({
   ...config,
@@ -29,19 +29,19 @@ export default class APIManager {
     console.log('>>> LOGOUT response: ', response)
     return response;
   }
-  static async getFlat() {
-    const response = await API.get(API_URL);
-    console.log('>>> getFlat response: ', response)
-    return response.data;
-  }
-  static async editFlat(id, newFlat) {
-    const response = await API.put(`/flats/${id}`, newFlat);
-    console.log('>>> editFlat response: ', response)
-    return response.data;
-  }
-  static async deleteFlat(id) {
-    const response = await API.delete(`/flats/${id}`);
-    console.log('>>> deleteFlat response: ', response)
-    return response.data;
-  }
+  // static async getFlat() {
+  //   const response = await API.get(API_URL);
+  //   console.log('>>> getFlat response: ', response)
+  //   return response.data;
+  // }
+  // static async editFlat(id, newFlat) {
+  //   const response = await API.put(`/flats/${id}`, newFlat);
+  //   console.log('>>> editFlat response: ', response)
+  //   return response.data;
+  // }
+  // static async deleteFlat(id) {
+  //   const response = await API.delete(`/flats/${id}`);
+  //   console.log('>>> deleteFlat response: ', response)
+  //   return response.data;
+  // }
 }
