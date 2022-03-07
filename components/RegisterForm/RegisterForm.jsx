@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { form, input, inputWrapper, btn } from "../LoginForm/form.module.scss";
-import APIManager from "../../pages/api/axiosMethods";
+import { form, input, inputWrapper, btn } from "components/LoginForm/form.module.scss";
+import APIManager from "pages/api/axiosMethods";
 import { useAtom } from "jotai";
-import { userAtom, authTokenAtom } from "store";
+import { userAtom } from "store";
 import { useRouter } from "next/router";
 
 const RegisterForm = () => {

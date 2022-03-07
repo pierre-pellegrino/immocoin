@@ -1,9 +1,8 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { useAtom } from "jotai";
 import { userAtom } from 'store';
 import styles from "styles/Home.module.css";
-import PropertyCard from '../components/PropertyCard/PropertyCard'
+import PropertyCard from 'components/PropertyCard/PropertyCard'
 import APIManager from './api/axiosMethods'
 
 export default function Home() {
