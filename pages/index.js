@@ -17,7 +17,7 @@ export default function Home() {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
-        <PropertyCard />
+        <PropertyCard description={"WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA "}/>
 
         <p className={styles.description}>
           Get started by editing{' '}
