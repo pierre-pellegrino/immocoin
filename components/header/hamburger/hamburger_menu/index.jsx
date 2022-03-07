@@ -1,3 +1,4 @@
+import cn from "classnames";
 import Image from "next/image";
 import {
   navItems,
@@ -5,9 +6,10 @@ import {
   profilePictureWrapper,
   profilePicture,
   profile,
+  active
 } from "./hamburger_menu.module.scss";
 
-const HamburgerMenu = ({ connected = true }) => {
+const HamburgerMenu = ({ connected, menuOpened }) => {
   let content = (
     <>
       <li>
@@ -86,7 +88,9 @@ const HamburgerMenu = ({ connected = true }) => {
   }
 
   return (
-    <nav className={menu}>
+    <nav className={`${menu} ` + cn({
+      [active]: menuOpened,
+    })}>
       <ul className={navItems}>{content}</ul>
     </nav>
   );
