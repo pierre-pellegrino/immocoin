@@ -2,25 +2,29 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  border: 1px #dbdbdb solid;
-  border-right: none;
-  border-left: none;
+  border-bottom: 1px #dbdbdb solid;
   padding: 1rem;
+}
+
+.nav {
+  width: 100%;
+}
+
+.navItems {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   li {
     width: 100%;
   }
 }
 
-.navItems {
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .title {
   font-size: 2rem;
 }
 
-
+.hamburger {
+  text-align: right;
+}

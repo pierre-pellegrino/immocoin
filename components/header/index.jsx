@@ -1,11 +1,14 @@
-import headerStyles from "./header.module.scss";
+import { header, nav, navItems, title, hamburger } from "./header.module.scss";
+import Searchbar from "./searchbar";
 
 const Header = () => {
   return (
-    <header className={headerStyles.header}>
-      <nav>
-        <ul className={headerStyles.navItems}>
-          <li className={headerStyles.title}>ImmoCoin</li>
+    <header className={header}>
+      <nav className={nav}>
+        <ul className={navItems}>
+          <li className={title}>ImmoCoin</li>
+          <li><Searchbar /></li>
+          <li className={hamburger}>Petit menu des familles</li>
         </ul>
       </nav>
     </header>
