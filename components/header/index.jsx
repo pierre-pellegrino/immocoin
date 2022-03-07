@@ -10,7 +10,7 @@ const Header = () => {
         <ul className={navItems}>
           <li className={title}>
             <Link href="/">
-              ImmoCoin
+              <a>ImmoCoin</a>
             </Link>
           </li>
           <li><Searchbar /></li>
