@@ -1,13 +1,16 @@
+import { Provider } from "jotai";
 import Header from "../header";
 
 const Layout = ({ children }) => {
   return (
-    <div className="Layout">
-      <Header />
-      <main>
-        {children}
-      </main>
-    </div>
+    <Provider>
+      <div className="Layout">
+        <Header />
+        <main>
+          {children}
+        </main>
+      </div>
+    </Provider>
   );
 };
 
