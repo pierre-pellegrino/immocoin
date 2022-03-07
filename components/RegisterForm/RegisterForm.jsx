@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { form, input, inputWrapper, btn } from './form.module.scss';
+import { form, input, inputWrapper, btn } from '../LoginForm/form.module.scss';
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
 
@@ -14,7 +14,7 @@ const LoginForm = () => {
 
   return (
     <div className={form}>
-      <h1> Login </h1>
+      <h1> Register </h1>
 
       <div className={inputWrapper}>
         <input type="text" className={input} id="email-input" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
@@ -26,9 +26,9 @@ const LoginForm = () => {
         <label htmlFor="password-input">Password</label>
       </div>
 
-      <button className={btn} type="button" onClick={() => console.log(data)}>Login</button>
+      <button className={btn} type="button" onClick={() => console.log(data)}>Sign up</button>
     </div>
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
