@@ -1,6 +1,7 @@
 import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
+import APIManager from "pages/api/axiosMethods";
 import {
   navItems,
   menu,
@@ -11,6 +12,10 @@ import {
 } from "./hamburger_menu.module.scss";
 
 const HamburgerMenu = ({ connected, menuOpened }) => {
+  const handleLogOut = async () => {
+    await APIManager.logOut();
+  }
+
   let content = (
     <>
       <li>
@@ -79,7 +84,7 @@ const HamburgerMenu = ({ connected, menuOpened }) => {
           </svg>
           Créer une annonce
         </li>
-        <li>
+        <li onClick={handleLogOut}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             x="0px"

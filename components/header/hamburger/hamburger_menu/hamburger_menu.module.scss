@@ -17,11 +17,12 @@
 .navItems {
   list-style: none;
 
-  li {
+  li, a {
     display: flex;
     align-items: center;
     margin: 2rem 0;
     width: 100%;
+    cursor: pointer;
 
     svg {
       width: 36px;
