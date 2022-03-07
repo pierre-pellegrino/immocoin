@@ -29,19 +29,19 @@ export default class APIManager {
     console.log('>>> LOGOUT response: ', response)
     return response;
   }
-  // static async getFlat() {
+  // static async getProperty() {
   //   const response = await API.get(API_URL);
-  //   console.log('>>> getFlat response: ', response)
+  //   console.log('>>> getProperty response: ', response)
   //   return response.data;
   // }
-  // static async editFlat(id, newFlat) {
-  //   const response = await API.put(`/flats/${id}`, newFlat);
-  //   console.log('>>> editFlat response: ', response)
+  // static async editProperty(id, newProperty) {
+  //   const response = await API.put(`/Property/${id}`, newProperty);
+  //   console.log('>>> editProperty response: ', response)
   //   return response.data;
   // }
-  // static async deleteFlat(id) {
-  //   const response = await API.delete(`/flats/${id}`);
-  //   console.log('>>> deleteFlat response: ', response)
+  // static async deleteProperty(id) {
+  //   const response = await API.delete(`/Property/${id}`);
+  //   console.log('>>> deleteProperty response: ', response)
   //   return response.data;
   // }
 }
