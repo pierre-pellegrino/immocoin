@@ -3,11 +3,13 @@ import { form, input, inputWrapper, btn } from "../LoginForm/form.module.scss";
 import APIManager from "../../pages/api/axiosMethods";
 import { useAtom } from "jotai";
 import { userAtom, authTokenAtom } from "store";
+import { useRouter } from "next/router";
 
 const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [_user, setUser] = useAtom(userAtom);
+  const router = useRouter();
 
   const data = {
     user: {
@@ -17,8 +19,13 @@ const RegisterForm = () => {
   };
 
   const handleRegister = async () => {
-    const response = await APIManager.register(data);
-    setUser(response.data);
+    try {
+      const response = await APIManager.register(data);
+      setUser(response.data);
+      router.push("/");
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (

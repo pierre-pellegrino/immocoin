@@ -19,9 +19,13 @@ const LoginForm = () => {
   };
 
   const handleLogin = async () => {
-    const response = await APIManager.logIn(data);
-    setUser(response.data);
-    router.push("/");
+    try {
+      const response = await APIManager.logIn(data);
+      setUser(response.data);
+      router.push("/");
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
