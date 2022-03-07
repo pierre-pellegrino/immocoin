@@ -1,0 +1,38 @@
+.icon {
+  width: 2rem;
+  height: 2rem;
+  stroke: black;
+  justify-self: flex-end;
+  cursor: pointer;
+  transform-origin: left bottom;
+  
+  line {
+    transition: all 0.3s ease;
+  }
+  
+  .top {
+    transform-origin: left top;
+    top: 0;
+  }
+
+  .bottom {
+    transform-origin: left bottom;
+    top: 0;
+  }
+
+  &.active {
+    .top {
+      transform: rotate(45deg) translate(24px, -16px);
+    }
+
+    .bottom {
+      transform: rotate(-45deg) translate(24px, 16px);
+    }
+
+    .middle {
+      transform: scaleX(0);
+    }
+  }
+}
+
+
