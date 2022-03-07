@@ -1,8 +1,30 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import PropertyCard from '../components/PropertyCard/PropertyCard'
 import styles from '../styles/Home.module.css'
+import APIManager from './api/axiosMethods'
 
 export default function Home() {
+
+  const handleRegister = async () => {
+      const userPayload = { "user": {
+      "email": "test3@yopmail.com",
+      "password": "azerty"
+    }};
+    await APIManager.register(userPayload);
+  }
+  const handleLogin = async () => {
+      const userPayload = { "user": {
+      "email": "test3@yopmail.com",
+      "password": "azerty"
+    }};
+    await APIManager.logIn(userPayload);
+  }
+
+  const handleDisconnect = async () => {
+    await APIManager.logOut();
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -11,10 +33,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <button onClick={() => handleRegister()}>Register</button>
+      <button onClick={() => handleLogin()}>Login</button>
+      <button onClick={() => handleDisconnect()}>Disconnect</button>     
+
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
+
+        <PropertyCard description={"WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA "}/>
 
         <p className={styles.description}>
           Get started by editing{' '}
