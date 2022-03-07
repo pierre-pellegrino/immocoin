@@ -12,10 +12,20 @@ import {
   profile,
   active,
 } from "./hamburger_menu.module.scss";
+import { useEffect } from "react";
 
-const HamburgerMenu = ({ connected, menuOpened }) => {
+const HamburgerMenu = ({ connected, menuOpened, setMenuOpened }) => {
   const [isConnected] = useAtom(isConnectedAtom);
   const [user, setUser] = useAtom(userAtom);
+
+  useEffect(() => {
+    if (!menuOpened) return;
+
+    const handleClick = () => setMenuOpened(false);
+
+    window.addEventListener("click", handleClick);
+    return () => window.removeEventListener("click", handleClick);
+  }, [menuOpened, setMenuOpened]);
 
   const handleLogOut = async () => {
     await APIManager.logOut();
@@ -115,7 +125,7 @@ const HamburgerMenu = ({ connected, menuOpened }) => {
           [active]: menuOpened,
         })
       }
-    >
+      >
       <ul className={navItems}>{content}</ul>
     </nav>
   );

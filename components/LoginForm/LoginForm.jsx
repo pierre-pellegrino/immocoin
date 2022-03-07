@@ -3,11 +3,13 @@ import { form, input, inputWrapper, btn } from "./form.module.scss";
 import APIManager from "../../pages/api/axiosMethods";
 import { useAtom } from "jotai";
 import { userAtom, authTokenAtom } from "store";
+import { useRouter } from "next/router";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [_user, setUser] = useAtom(userAtom);
+  const router = useRouter();
 
   const data = {
     user: {
@@ -19,6 +21,7 @@ const LoginForm = () => {
   const handleLogin = async () => {
     const response = await APIManager.logIn(data);
     setUser(response.data);
+    router.push("/");
   };
 
   return (
