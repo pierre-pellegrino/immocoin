@@ -32,3 +32,11 @@ a {
 .primary {
   color: var(--primary);
 }
+
+.bolder {
+  font-weight: bolder;
+}
+
+.mb1 {
+  margin-bottom: 1rem;
+}
