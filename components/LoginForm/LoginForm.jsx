@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { form, input, inputWrapper, btn } from "./form.module.scss";
+import { form, input, inputWrapper, btn } from "styles/form.module.scss";
 import APIManager from "pages/api/axiosMethods";
 import { useAtom } from "jotai";
 import { userAtom, isConnectedAtom } from "store";
