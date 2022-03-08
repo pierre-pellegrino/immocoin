@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { form, input, inputWrapper, btn } from "./form.module.scss";
 import APIManager from "pages/api/axiosMethods";
 import { useAtom } from "jotai";
-import { userAtom } from "store";
+import { userAtom, isConnectedAtom } from "store";
 import { useRouter } from "next/router";
 
 const LoginForm = () => {
+
+  useEffect(() => {
+    isConnectedAtom && router.push("/");
+  }, [])
+
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [_user, setUser] = useAtom(userAtom);
