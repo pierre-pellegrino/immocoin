@@ -2,9 +2,7 @@ import Head from 'next/head'
 import { useAtom } from "jotai";
 import { userAtom } from 'store';
 import styles from "styles/Home.module.css";
-import PropertyCard from 'components/PropertyCard/PropertyCard'
 import PropertiesList from 'components/PropertiesList/PropertiesList'
-import APIManager from './api/axiosMethods'
 
 export default function Home() {
 
@@ -23,7 +21,6 @@ export default function Home() {
           Salut {user?.email ?? "étranger"} !
         </h1>
         <PropertiesList />
-        {/* <PropertyCard description={"WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA WOH SUPER MAISON LA "}/> */}
       </main>
     </div>
   )
