@@ -4,8 +4,9 @@ import { userAtom } from 'store';
 import styles from "styles/Home.module.css";
 import PropertiesList from 'components/PropertiesList/PropertiesList'
 import HeroHeader from 'components/HeroHeader/HeroHeader'
+import APIManager from './api/axiosMethods';
 
-export default function Home() {
+export default function Home({ properties }) {
 
   const [user] = useAtom(userAtom);
 
@@ -23,8 +24,19 @@ export default function Home() {
           Salut {user?.email ?? "étranger"} !
         </h1>
         
-        <PropertiesList />
+        <PropertiesList properties={properties} />
       </main>
     </div>
   )
+}
+
+export const getStaticProps = async () => {
+  const response = await APIManager.getAllProperties();
+  const properties = response.data.properties;
+
+  return {
+    props: {
+      properties,
+    },
+  };
 }
