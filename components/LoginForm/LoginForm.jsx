@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 const LoginForm = () => {
 
   useEffect(() => {
-    isConnectedAtom && router.push("/");
+    // isConnectedAtom && router.push("/");
   }, [])
 
   const [email, setEmail] = useState("");
