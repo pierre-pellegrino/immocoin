@@ -44,8 +44,7 @@
   .propertyCardPrice {
     text-align: center;
     font-weight: 700;
-    // Couleur à changer selon notre charte
-    color: #0070F3;
+    color: var(--primary);
   }
 
   .propertyCardDescription {

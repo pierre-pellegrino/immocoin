@@ -3,6 +3,7 @@ import { useAtom } from "jotai";
 import { userAtom } from 'store';
 import styles from "styles/Home.module.css";
 import PropertiesList from 'components/PropertiesList/PropertiesList'
+import HeroHeader from 'components/HeroHeader/HeroHeader'
 
 export default function Home() {
 
@@ -16,10 +17,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <HeroHeader />
       <main className={styles.main}>
         <h1 className={styles.title}>
           Salut {user?.email ?? "étranger"} !
         </h1>
+        
         <PropertiesList />
       </main>
     </div>
