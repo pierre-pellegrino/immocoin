@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { form, input, inputWrapper, btn } from "components/LoginForm/form.module.scss";
 import APIManager from "pages/api/axiosMethods";
 import { useAtom } from "jotai";
-import { userAtom } from "store";
+import { userAtom, isConnectedAtom } from "store";
 import { useRouter } from "next/router";
 
 const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [_user, setUser] = useAtom(userAtom);
+  const [isConnected] = useAtom(isConnectedAtom);
   const router = useRouter();
+
+  useEffect(() => {
+    isConnected && router.back();
+  }, [isConnected, router]);
 
   const data = {
     user: {
@@ -30,7 +35,7 @@ const RegisterForm = () => {
 
   return (
     <div className={form}>
-      <h1> Register </h1>
+      <h1> Inscription </h1>
 
       <div className={inputWrapper}>
         <input
@@ -49,15 +54,15 @@ const RegisterForm = () => {
           type="password"
           className={input}
           id="password-input"
-          placeholder="Password"
+          placeholder="Mot de passe"
           value={pwd}
           onChange={(e) => setPwd(e.target.value)}
         ></input>
-        <label htmlFor="password-input">Password</label>
+        <label htmlFor="password-input">Mot de passe</label>
       </div>
 
       <button className={btn} type="button" onClick={() => handleRegister()}>
-        Sign up
+        M'inscrire
       </button>
     </div>
   );

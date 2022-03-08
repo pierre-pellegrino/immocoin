@@ -36,4 +36,8 @@ export default class APIManager {
     const response = await API.get("/member-data");
     return response;
   }
+  static async getAllProperties() {
+    const response = await API.get("/properties");
+    return response;
+  }
 }
