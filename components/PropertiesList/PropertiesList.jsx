@@ -42,13 +42,12 @@ const PropertiesList = () => {
         {fetchedProperties.map(property => {
           const { title, description, picture, price, id } = property;
           return (
-            <Link href={`/properties/${id}`}>
+            <Link href={`/properties/${id}`} key={id}>
               <a><PropertyCard 
                 title={title} 
                 description={description} 
                 picture={picture} 
                 price={price} 
-                key={id}
               />
               </a>
             </Link>
