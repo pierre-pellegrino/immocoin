@@ -5,16 +5,16 @@ import { useAtom } from "jotai";
 import { userAtom, isConnectedAtom } from "store";
 import { useRouter } from "next/router";
 
-const LoginForm = () => {
-
-  useEffect(() => {
-    // isConnectedAtom && router.push("/");
-  }, [])
-
+const LoginForm = () => {  
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [_user, setUser] = useAtom(userAtom);
+  const [isConnected] = useAtom(isConnectedAtom);
   const router = useRouter();
+
+  useEffect(() => {
+    isConnected && router.push(-1);
+  }, [isConnected, router]);
 
   const data = {
     user: {
