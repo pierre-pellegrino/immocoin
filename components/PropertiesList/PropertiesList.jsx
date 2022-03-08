@@ -3,6 +3,7 @@ import { Oval } from 'react-loader-spinner';
 import APIManager from "pages/api/axiosMethods";
 import PropertyCard from "../PropertyCard/PropertyCard";
 import { propertiesListWrapper } from './propertieslist.module.scss';
+import Link from 'next/link';
 
 const PropertiesList = () => {
 
@@ -41,13 +42,16 @@ const PropertiesList = () => {
         {fetchedProperties.map(property => {
           const { title, description, picture, price, id } = property;
           return (
-            <PropertyCard 
-              title={title} 
-              description={description} 
-              picture={picture} 
-              price={price} 
-              key={id}
-            />
+            <Link href={`/properties/${id}`}>
+              <a><PropertyCard 
+                title={title} 
+                description={description} 
+                picture={picture} 
+                price={price} 
+                key={id}
+              />
+              </a>
+            </Link>
           )
         })}
       </div>
