@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 import { useAtom } from "jotai";
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
 import { userAtom } from "store";
 import Header from "../header";
 import APIManager from "pages/api/axiosMethods";
@@ -8,7 +8,7 @@ import APIManager from "pages/api/axiosMethods";
 const Layout = ({ children }) => {
   const [_user, setUser] = useAtom(userAtom);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const getUser = async () => {
       try {
         const response = await APIManager.logInFromToken();

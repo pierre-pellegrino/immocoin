@@ -13,7 +13,7 @@ const RegisterForm = () => {
   const router = useRouter();
 
   useEffect(() => {
-    isConnected && router.push(-1);
+    isConnected && router.back();
   }, [isConnected, router]);
 
   const data = {
