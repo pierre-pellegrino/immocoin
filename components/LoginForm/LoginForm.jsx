@@ -30,7 +30,7 @@ const LoginForm = () => {
 
   return (
     <div className={form}>
-      <h1> Login </h1>
+      <h1> Connexion </h1>
 
       <div className={inputWrapper}>
         <input
@@ -49,15 +49,15 @@ const LoginForm = () => {
           type="password"
           className={input}
           id="password-input"
-          placeholder="Password"
+          placeholder="Mot de passe"
           value={pwd}
           onChange={(e) => setPwd(e.target.value)}
         ></input>
-        <label htmlFor="password-input">Password</label>
+        <label htmlFor="password-input">Mot de passe</label>
       </div>
 
       <button className={btn} type="button" onClick={() => handleLogin()}>
-        Login
+        Me connecter
       </button>
     </div>
   );
