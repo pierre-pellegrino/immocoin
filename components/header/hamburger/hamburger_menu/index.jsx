@@ -2,6 +2,8 @@ import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 import APIManager from "pages/api/axiosMethods";
+import { useAtom } from "jotai";
+import { userAtom, isConnectedAtom } from "store";
 import {
   navItems,
   menu,
@@ -10,10 +12,24 @@ import {
   profile,
   active,
 } from "./hamburger_menu.module.scss";
+import { useEffect } from "react";
 
-const HamburgerMenu = ({ connected, menuOpened }) => {
+const HamburgerMenu = ({ connected, menuOpened, setMenuOpened }) => {
+  const [isConnected] = useAtom(isConnectedAtom);
+  const [user, setUser] = useAtom(userAtom);
+
+  useEffect(() => {
+    if (!menuOpened) return;
+
+    const handleClick = () => setMenuOpened(false);
+
+    window.addEventListener("click", handleClick);
+    return () => window.removeEventListener("click", handleClick);
+  }, [menuOpened, setMenuOpened]);
+
   const handleLogOut = async () => {
     await APIManager.logOut();
+    setUser(null);
   }
 
   let content = (
@@ -55,7 +71,7 @@ const HamburgerMenu = ({ connected, menuOpened }) => {
     </>
   );
 
-  if (connected) {
+  if (isConnected ?? connected) {
     content = (
       <>
         <li className={profile}>
@@ -109,7 +125,7 @@ const HamburgerMenu = ({ connected, menuOpened }) => {
           [active]: menuOpened,
         })
       }
-    >
+      >
       <ul className={navItems}>{content}</ul>
     </nav>
   );

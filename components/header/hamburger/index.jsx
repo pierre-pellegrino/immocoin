@@ -28,7 +28,7 @@ const Hamburger = () => {
         <line className={middle} x1="4" y1="48" x2="92" y2="48" />
         <line className={bottom} x1="4" y1="84" x2="92" y2="84" />
       </svg>
-      <HamburgerMenu menuOpened={menuOpened} />
+      <HamburgerMenu menuOpened={menuOpened} setMenuOpened={setMenuOpened} />
     </div>
   );
 };

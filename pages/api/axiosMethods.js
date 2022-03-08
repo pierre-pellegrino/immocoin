@@ -18,15 +18,22 @@ export default class APIManager {
     const response = await API.post(`/users`, payload)
     console.log('>>> REGISTER response.headers.auth: ', response.headers.authorization)
     Cookies.set('token', response.headers.authorization)
+    return response;
   }
   static async logIn(payload) {
     const response = await API.post(`/users/sign_in`, payload)
     console.log('>>> LOGIN response: ', response)
     Cookies.set('token', response.headers.authorization)
+    return response;
   }
   static async logOut() {
     const response = await API.delete(`/users/sign_out`)
     console.log('>>> LOGOUT response: ', response)
     Cookies.remove('token')
+    return response;
+  }
+  static async logInFromToken() {
+    const response = await API.get("/member-data");
+    return response;
   }
 }
