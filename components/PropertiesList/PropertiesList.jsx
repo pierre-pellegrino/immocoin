@@ -26,7 +26,7 @@ const PropertiesList = () => {
           <Oval
             height="100"
             width="100"
-            color='#0070F3'
+            color='hsl(212, 100%, 48%)'
             secondaryColor='#ddd'
             ariaLabel='loading'
           />

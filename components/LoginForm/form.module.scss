@@ -30,9 +30,7 @@
     -o-border-radius: 1.5em;
     color: #fff;
     font-weight: bolder;
-
-    //A changer quandon auranos variables
-    background-color: rgb(0, 112, 243);
+    background-color: var(--primary);
 
     &:disabled {
       opacity: 0.6;
