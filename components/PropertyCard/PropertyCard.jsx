@@ -5,6 +5,7 @@ const PropertyCard = ({title, description, picture, price}) => {
 
   // Formats description to display it nicely
   const descriptionToDisplay = description && description.length > 140 ? `${description.slice(0,140)}...` : description || "Description not available.";
+  const cleanPrice = new String(price).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 
   return (
     <div className={propertyCard}>
@@ -14,7 +15,7 @@ const PropertyCard = ({title, description, picture, price}) => {
 
       <div className={propertyCardContent}>
         <h2>{title || "Nom de l'annonce"}</h2>
-        <p className={propertyCardPrice}>{price || "N/C"}€</p>
+        <p className={propertyCardPrice}>{cleanPrice || "N/C"}€</p>
         <p className={propertyCardDescription}> 
           {descriptionToDisplay}
         </p>
