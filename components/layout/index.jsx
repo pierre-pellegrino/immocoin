@@ -15,6 +15,7 @@ const Layout = ({ children }) => {
         setUser(response.data);
       } catch (e) {
         console.error(e);
+        Cookies.remove("token");
       }
     }
 
