@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { form, input, inputWrapper, btn } from "./form.module.scss";
 import APIManager from "pages/api/axiosMethods";
 import { useAtom } from "jotai";
 import { userAtom, isConnectedAtom } from "store";
 import { useRouter } from "next/router";
 
-const LoginForm = () => {  
-  const [email, setEmail] = useState("");
-  const [pwd, setPwd] = useState("");
+const LoginForm = () => {
+  const email = useRef();
+  const pwd = useRef();
   const [_user, setUser] = useAtom(userAtom);
   const [isConnected] = useAtom(isConnectedAtom);
   const router = useRouter();
@@ -15,15 +15,24 @@ const LoginForm = () => {
   useEffect(() => {
     isConnected && router.back();
   }, [isConnected, router]);
+  
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    
+    const canSave = [
+      email.current?.value,
+      pwd.current?.value,
+    ].every(Boolean);
 
-  const data = {
-    user: {
-      email: email,
-      password: pwd,
-    },
-  };
+    if (!canSave) return;
+    
+    const data = {
+      user: {
+        email: email.current?.value,
+        password: pwd.current?.value,
+      },
+    };
 
-  const handleLogin = async () => {
     try {
       const response = await APIManager.logIn(data);
       setUser(response.data);
@@ -34,7 +43,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className={form}>
+    <form className={form} onSubmit={handleLogin}>
       <h1> Connexion </h1>
 
       <div className={inputWrapper}>
@@ -43,9 +52,8 @@ const LoginForm = () => {
           className={input}
           id="email-input"
           placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        ></input>
+          ref={email}
+        />
         <label htmlFor="email-input">Email</label>
       </div>
 
@@ -55,16 +63,13 @@ const LoginForm = () => {
           className={input}
           id="password-input"
           placeholder="Mot de passe"
-          value={pwd}
-          onChange={(e) => setPwd(e.target.value)}
-        ></input>
+          ref={pwd}
+        />
         <label htmlFor="password-input">Mot de passe</label>
       </div>
 
-      <button className={btn} type="button" onClick={() => handleLogin()}>
-        Me connecter
-      </button>
-    </div>
+      <input className={btn} type="submit" role="button" value="Me connecter" />
+    </form>
   );
 };
 

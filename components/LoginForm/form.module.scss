@@ -34,6 +34,15 @@
     //A changer quandon auranos variables
     background-color: rgb(0, 112, 243);
 
+    &:disabled {
+      opacity: 0.6;
+      cursor: auto;
+
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+
     &:hover {
       opacity: 0.8;
     }
@@ -101,5 +110,4 @@
       -o-transition: transform 0.3s, opacity 0.3s;
     }
   }
-
 }

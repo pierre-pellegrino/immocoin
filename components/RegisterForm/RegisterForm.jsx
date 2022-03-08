@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { form, input, inputWrapper, btn } from "components/LoginForm/form.module.scss";
 import APIManager from "pages/api/axiosMethods";
 import { useAtom } from "jotai";
 import { userAtom, isConnectedAtom } from "store";
 import { useRouter } from "next/router";
+import ValidationIcon from "components/ValidationIcon";
 
 const RegisterForm = () => {
-  const [email, setEmail] = useState("");
-  const [pwd, setPwd] = useState("");
+  const email = useRef()
+  const pwd = useRef();
+  const pwdConfirm = useRef();
+  const [validEmail, setValidEmail] = useState(false);
+  const [validPwd, setValidPwd] = useState(false);
+  const [validPwdConfirm, setValidPwdConfirm] = useState(false);
   const [_user, setUser] = useAtom(userAtom);
   const [isConnected] = useAtom(isConnectedAtom);
   const router = useRouter();
@@ -16,14 +21,37 @@ const RegisterForm = () => {
     isConnected && router.back();
   }, [isConnected, router]);
 
-  const data = {
-    user: {
-      email: email,
-      password: pwd,
-    },
-  };
+  const emailValidation = () => {
+    return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email.current?.value);
+  }
 
-  const handleRegister = async () => {
+  const pwdValidation = () => {
+    return pwd.current?.value.length >= 6;
+  }
+
+  const pwdConfirmValidation = () => {
+    return pwdValidation() && (pwdConfirm.current?.value === pwd.current?.value);
+  }
+
+  const canSave = [
+    validEmail,
+    validPwd,
+    validPwdConfirm,
+  ].every(Boolean);
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    
+
+    if (!canSave) return;
+    
+    const data = {
+      user: {
+        email: email.current?.value,
+        password: pwd.current?.value,
+      },
+    };
+
     try {
       const response = await APIManager.register(data);
       setUser(response.data);
@@ -34,7 +62,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className={form}>
+    <form className={form} onSubmit={handleRegister}>
       <h1> Inscription </h1>
 
       <div className={inputWrapper}>
@@ -43,10 +71,11 @@ const RegisterForm = () => {
           className={input}
           id="email-input"
           placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          ref={email}
+          onChange={() => setValidEmail(emailValidation())}
         ></input>
         <label htmlFor="email-input">Email</label>
+        <ValidationIcon isValid={validEmail} />
       </div>
 
       <div className={inputWrapper}>
@@ -55,16 +84,31 @@ const RegisterForm = () => {
           className={input}
           id="password-input"
           placeholder="Mot de passe"
-          value={pwd}
-          onChange={(e) => setPwd(e.target.value)}
-        ></input>
+          ref={pwd}
+          onChange={() => {
+            setValidPwd(pwdValidation());
+            setValidPwdConfirm(pwdConfirmValidation());
+          }}
+        />
         <label htmlFor="password-input">Mot de passe</label>
+        <ValidationIcon isValid={validPwd} />
       </div>
 
-      <button className={btn} type="button" onClick={() => handleRegister()}>
-        M'inscrire
-      </button>
-    </div>
+      <div className={inputWrapper}>
+        <input
+          type="password"
+          className={input}
+          id="password-confirmation"
+          placeholder="Confirmation du mot de passe"
+          ref={pwdConfirm}
+          onChange={() => setValidPwdConfirm(pwdConfirmValidation())}
+        />
+        <label htmlFor="password-confirmation">Confirmation du mot de passe</label>
+        <ValidationIcon isValid={validPwdConfirm} />
+      </div>
+
+      <input className={btn} type="submit" role="button" value="M'inscrire" disabled={!canSave} />
+    </form>
   );
 };
 
