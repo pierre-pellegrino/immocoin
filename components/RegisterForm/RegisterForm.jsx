@@ -10,6 +10,7 @@ import { useAtom } from "jotai";
 import { userAtom, isConnectedAtom } from "store";
 import { useRouter } from "next/router";
 import ValidationIcon from "components/ValidationIcon";
+import Errors from "components/Errors";
 
 const RegisterForm = () => {
   const email = useRef();
@@ -18,7 +19,7 @@ const RegisterForm = () => {
   const [validEmail, setValidEmail] = useState(false);
   const [validPwd, setValidPwd] = useState(false);
   const [validPwdConfirm, setValidPwdConfirm] = useState(false);
-  const [errors, setErrors] = useState();
+  const [serverErrors, setServerErrors] = useState("");
   const [_user, setUser] = useAtom(userAtom);
   const [isConnected] = useAtom(isConnectedAtom);
   const router = useRouter();
@@ -28,14 +29,17 @@ const RegisterForm = () => {
   }, [isConnected, router]);
 
   const emailValidation = () => {
+    setServerErrors("");
     return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email.current?.value);
   };
 
   const pwdValidation = () => {
+    setServerErrors("");
     return pwd.current?.value.length >= 6;
   };
 
   const pwdConfirmValidation = () => {
+    setServerErrors("");
     return pwdValidation() && pwdConfirm.current?.value === pwd.current?.value;
   };
 
@@ -59,14 +63,15 @@ const RegisterForm = () => {
       setUser(response.data);
       router.push("/");
     } catch (error) {
-      console.log(error.response.data.error);
-      setErrors(error.response.data.error);
+      setServerErrors(error.response.data.error.message);
     }
   };
 
   return (
     <form className={form} onSubmit={handleRegister}>
       <h1> Inscription </h1>
+
+      {serverErrors !== "" && <Errors serverErrors={serverErrors} />}
 
       <div className={inputWrapper}>
         <input
@@ -78,7 +83,7 @@ const RegisterForm = () => {
           onChange={() => setValidEmail(emailValidation())}
         ></input>
         <label htmlFor="email-input">Email</label>
-        <ValidationIcon isValid={validEmail} />
+        <ValidationIcon isValid={serverErrors === "" && validEmail} />
       </div>
 
       <div className={inputWrapper}>
@@ -94,7 +99,7 @@ const RegisterForm = () => {
           }}
         />
         <label htmlFor="password-input">Mot de passe</label>
-        <ValidationIcon isValid={validPwd} />
+        <ValidationIcon isValid={serverErrors === "" && validPwd} />
       </div>
 
       <div className={inputWrapper}>
@@ -109,7 +114,7 @@ const RegisterForm = () => {
         <label htmlFor="password-confirmation">
           Confirmation du mot de passe
         </label>
-        <ValidationIcon isValid={validPwdConfirm} />
+        <ValidationIcon isValid={serverErrors === "" && validPwdConfirm} />
       </div>
 
       <input
