@@ -5,12 +5,14 @@ import { useAtom } from "jotai";
 import { userAtom, isConnectedAtom } from "store";
 import { useRouter } from "next/router";
 import ValidationIcon from "components/ValidationIcon";
+import Errors from "components/Errors";
 
 const LoginForm = () => {
   const email = useRef();
   const pwd = useRef();
   const [validEmail, setValidEmail] = useState(false);
   const [validPwd, setValidPwd] = useState(false);
+  const [serverErrors, setServerErrors] = useState("");
   const [_user, setUser] = useAtom(userAtom);
   const [isConnected] = useAtom(isConnectedAtom);
   const router = useRouter();
@@ -20,10 +22,12 @@ const LoginForm = () => {
   }, [isConnected, router]);
 
   const emailValidation = () => {
+    setServerErrors("");
     return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email.current?.value);
   };
 
   const pwdValidation = () => {
+    setServerErrors("");
     return pwd.current?.value.length >= 6;
   };
 
@@ -45,14 +49,16 @@ const LoginForm = () => {
       const response = await APIManager.logIn(data);
       setUser(response.data);
       router.push("/");
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      setServerErrors(error.response.data);
     }
   };
 
   return (
     <form className={form} onSubmit={handleLogin}>
       <h1> Connexion </h1>
+
+      {serverErrors !== "" && <Errors serverErrors={serverErrors} />}
 
       <div className={inputWrapper}>
         <input
@@ -64,7 +70,7 @@ const LoginForm = () => {
           onChange={() => setValidEmail(emailValidation())}
         />
         <label htmlFor="email-input">Email</label>
-        <ValidationIcon isValid={validEmail} />
+        <ValidationIcon isValid={serverErrors === "" && validEmail} />
       </div>
 
       <div className={inputWrapper}>
@@ -77,7 +83,7 @@ const LoginForm = () => {
           onChange={() => setValidPwd(pwdValidation())}
         />
         <label htmlFor="password-input">Mot de passe</label>
-        <ValidationIcon isValid={validPwd} />
+        <ValidationIcon isValid={serverErrors === "" && validPwd} />
       </div>
 
       <input

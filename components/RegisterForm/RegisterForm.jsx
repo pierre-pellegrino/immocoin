@@ -18,6 +18,7 @@ const RegisterForm = () => {
   const [validEmail, setValidEmail] = useState(false);
   const [validPwd, setValidPwd] = useState(false);
   const [validPwdConfirm, setValidPwdConfirm] = useState(false);
+  const [errors, setErrors] = useState();
   const [_user, setUser] = useAtom(userAtom);
   const [isConnected] = useAtom(isConnectedAtom);
   const router = useRouter();
@@ -54,10 +55,12 @@ const RegisterForm = () => {
 
     try {
       const response = await APIManager.register(data);
+      console.log(response);
       setUser(response.data);
       router.push("/");
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.log(error.response.data.error);
+      setErrors(error.response.data.error);
     }
   };
 
