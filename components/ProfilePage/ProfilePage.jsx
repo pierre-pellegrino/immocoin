@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Modal from 'react-modal';
 import APIManager from 'pages/api/axiosMethods';
 import { btn } from 'styles/form.module.scss';
+import withPrivateRoute from "components/withPrivateRoute";
 
 const ProfilePage = ({properties}) => {
   const [user] = useAtom(userAtom);
@@ -103,4 +104,4 @@ const customStyles = {
   }
 };
 
-export default ProfilePage;
+export default withPrivateRoute(ProfilePage);
