@@ -4,6 +4,7 @@ import {useAtom} from 'jotai';
 import {userAtom} from 'store';
 import {useRouter} from 'next/router';
 import { useEffect } from 'react';
+import { Oval } from 'react-loader-spinner';
 
 
 const Profile = ({properties, error}) => {
