@@ -79,7 +79,7 @@ const HamburgerMenu = ({ connected, menuOpened, setMenuOpened }) => {
             <a>
               <div className={profilePictureWrapper}>
                 <Image
-                  src="/default_avatar.svg"
+                  src={user.avatar ?? "/default_avatar.svg"}
                   width="96"
                   height="96"
                   alt="profile picture"
