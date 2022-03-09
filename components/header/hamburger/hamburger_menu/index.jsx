@@ -9,6 +9,7 @@ import {
   menu,
   profilePictureWrapper,
   profilePicture,
+  profilePicturePlaceholder,
   profile,
   active,
 } from "./hamburger_menu.module.scss";
@@ -31,6 +32,20 @@ const HamburgerMenu = ({ connected, menuOpened, setMenuOpened }) => {
     await APIManager.logOut();
     setUser(null);
   };
+
+  let avatar = <div className={profilePicturePlaceholder}></div>
+
+  if (user?.avatar) {
+    avatar = (
+      <Image
+        src={user.avatar}
+        width="96"
+        height="96"
+        alt="profile picture"
+        className={profilePicture}
+      />
+    );
+  }
 
   let content = (
     <>
@@ -78,13 +93,7 @@ const HamburgerMenu = ({ connected, menuOpened, setMenuOpened }) => {
           <Link href="/profile/">
             <a>
               <div className={profilePictureWrapper}>
-                <Image
-                  src={user.avatar ?? "/default_avatar.svg"}
-                  width="96"
-                  height="96"
-                  alt="profile picture"
-                  className={profilePicture}
-                />
+                {avatar}
               </div>
               <div>Mon&nbsp;Profil</div>
             </a>
