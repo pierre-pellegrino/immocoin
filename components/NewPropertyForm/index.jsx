@@ -44,7 +44,7 @@ const NewPropertyForm = () => {
     try {
       const response = await APIManager.newProperty(data);
       console.log(response.data);
-      router.push("/");
+      router.push(`/properties/${response.data.property.id}`);
     } catch (error) {
       setServerErrors(error.response.data.error);
     }
@@ -54,7 +54,7 @@ const NewPropertyForm = () => {
     <form className={form} onSubmit={handleSubmit}>
       <h1>Créer un logement</h1>
 
-      {serverErrors !== "" && <Errors serverErrors={serverErrors} />}
+      {/* {serverErrors !== "" && <Errors serverErrors={serverErrors} />} */}
 
       <div className={inputWrapper}>
         <input
