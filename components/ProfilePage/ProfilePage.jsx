@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {modal, profilePage, profilePage__hero, profilePage__content, profilePage__content__img, left, right } from './profile_page.module.scss';
 import PropertiesList from '../PropertiesList/PropertiesList';
 import {useAtom} from 'jotai';
@@ -18,13 +18,12 @@ const ProfilePage = ({properties}) => {
 
   const handleSubmit = async () => {
     const data = { 
-      firstname: firstname,
-      lastname: lastname,
+      first_name: firstname,
+      last_name: lastname,
       avatar: avatar
     }
-    console.log('data of the new profile: ', data)
     const response = await APIManager.editProfile(data)
-    //console.log('response: ', response)
+    console.log(response)
   }
 
   return (

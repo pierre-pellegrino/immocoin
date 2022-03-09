@@ -44,6 +44,12 @@ export default class APIManager {
     return response;
   }
   
+  static async editProfile(data) {
+    const url = '/users'
+    const response = await APIRequest.patch(url, data)
+    return response;
+  }
+
   static async getAllProperties() {
     const url = '/properties'
     const response = await APIRequest.get(url);
