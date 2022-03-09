@@ -53,7 +53,8 @@ export default class APIManager {
     return response;
   }
   static async editProfile(userId, newProfile) {
-    const response = await API.patch(`/member-update/${userId}`, newProfile, {
+    // const response = await API.patch(`/member-update/${userId}`, newProfile, {
+    const response = await API.put(`/member-update/`, newProfile, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
