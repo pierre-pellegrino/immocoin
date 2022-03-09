@@ -75,16 +75,20 @@ const HamburgerMenu = ({ connected, menuOpened, setMenuOpened }) => {
     content = (
       <>
         <li className={profile}>
-          <div className={profilePictureWrapper}>
-            <Image
-              src="/default_avatar.svg"
-              width="96"
-              height="96"
-              alt="profile picture"
-              className={profilePicture}
-            />
-          </div>
-          <div>Mon&nbsp;Profil</div>
+          <Link href="/profile">
+            <a>
+              <div className={profilePictureWrapper}>
+                <Image
+                  src="/default_avatar.svg"
+                  width="96"
+                  height="96"
+                  alt="profile picture"
+                  className={profilePicture}
+                />
+              </div>
+              <div>Mon&nbsp;Profil</div>
+            </a>
+          </Link>
         </li>
         <hr />
         <li>

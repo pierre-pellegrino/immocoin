@@ -30,7 +30,7 @@ export default function Home({ properties, error }) {
           secondaryColor='#ddd'
           ariaLabel='loading'
         />
-        <div style={{ marginTop: "2rem" }}>Oups ! Nous rencontrons actuellement un petit soucis, veuillez revenir plus tard !</div>
+        <div style={{ marginTop: "2rem" }}>Oups ! Nous rencontrons actuellement un petit souci, veuillez revenir plus tard !</div>
       </>
     );
   }
