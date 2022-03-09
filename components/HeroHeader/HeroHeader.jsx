@@ -13,7 +13,7 @@ const HeroHeader = () => {
           <p> Des milliers de logements disponibles </p>
           <p> Une équipe de 4 collaborateurs à votre service </p>
           <p> Mise en relation avec des particuliers </p>
-          <p> Création d'annonces gratuite </p>
+          <p> Création d&apos;annonces gratuite </p>
         </div>
         <div>
           <Image

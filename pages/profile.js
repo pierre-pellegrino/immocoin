@@ -6,7 +6,7 @@ import {useRouter} from 'next/router';
 import { useEffect } from 'react';
 
 
-const profile = ({properties, error}) => {
+const Profile = ({properties, error}) => {
   const [user] = useAtom(userAtom);
   const router = useRouter();
 
@@ -45,7 +45,7 @@ const profile = ({properties, error}) => {
   )
 }
 
-export default profile;
+export default Profile;
 
 export const getStaticProps = async () => {
   try {
