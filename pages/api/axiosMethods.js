@@ -40,4 +40,8 @@ export default class APIManager {
     const response = await API.get("/properties");
     return response;
   }
+  static async getPropertyDetails(id) {
+    const response = await API.get(`/properties/${id}`)
+    return response;
+  }
 }
