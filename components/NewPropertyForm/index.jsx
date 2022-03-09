@@ -22,40 +22,8 @@ const NewPropertyForm = () => {
   const [validDescription, setValidDescription] = useState(false);
   const [validPrice, setValidPrice] = useState(false);
   const [validAddress, setValidAddress] = useState(false);
-  const [validPicture, setValidPicture] = useState(false);
   const [serverErrors, setServerErrors] = useState("");
   const router = useRouter();
-
-  const titleValidation = () => {
-    setServerErrors("");
-    const titleLength = title.current.value.length;
-    return titleLength >= 5 && titleLength <= 144;
-  }
-
-  const descriptionValidation = () => {
-    setServerErrors("");
-    const descriptionLength = description.current.value.length;
-    return descriptionLength >= 5 && descriptionLength <= 1000;
-  }
-
-  const priceValidation = () => {
-    setServerErrors("");
-    return (
-      parseInt(price.current.value, 10) >= 0 
-      && /^\d+$/.test(price.current.value)
-    );
-  }
-
-  const addressValidation = () => {
-    setServerErrors("");
-    const addrLength = address.current.value.length;
-    return addrLength > 0;
-  }
-
-  const pictureValidation = () => {
-    setServerErrors("");
-    return picture.current?.files[0] !== undefined;
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -79,24 +47,15 @@ const NewPropertyForm = () => {
       console.log(response.data);
       router.push(`/properties/${response.data.property.id}`);
     } catch (error) {
-      const errorText = error.response.data.error;
-      setServerErrors(errorText ?? "Oups ! Quelque chose s'est mal passé 😅");
+      setServerErrors(error.response.data.error);
     }
   };
-
-  const canSave = [
-    validTitle,
-    validDescription,
-    validPrice,
-    validAddress,
-    validPicture,
-  ].every(Boolean);
 
   return (
     <form className={form} onSubmit={handleSubmit}>
       <h1>Créer un logement</h1>
 
-      {serverErrors !== "" && <Errors serverErrors={serverErrors} />}
+      {/* {serverErrors !== "" && <Errors serverErrors={serverErrors} />} */}
 
       <div className={inputWrapper}>
         <input
@@ -105,10 +64,9 @@ const NewPropertyForm = () => {
           id="title-input"
           placeholder="Title"
           ref={title}
-          onChange={() => setValidTitle(titleValidation())}
         />
         <label htmlFor="title-input">Nom du logement</label>
-        <ValidationIcon isValid={serverErrors === "" && validTitle} />
+        {/* <ValidationIcon isValid={serverErrors === "" && validEmail} /> */}
       </div>
 
       <div className={inputWrapper}>
@@ -117,10 +75,9 @@ const NewPropertyForm = () => {
           id="description-input"
           placeholder="Description"
           ref={description}
-          onChange={() => setValidDescription(descriptionValidation())}
         />
         <label htmlFor="description-input">Description</label>
-        <ValidationIcon isValid={serverErrors === "" && validDescription} />
+        {/* <ValidationIcon isValid={serverErrors === "" && validEmail} /> */}
       </div>
 
       <div className={inputWrapper}>
@@ -130,10 +87,9 @@ const NewPropertyForm = () => {
           id="price-input"
           placeholder="Prix"
           ref={price}
-          onChange={() => setValidPrice(priceValidation())}
         />
         <label htmlFor="price-input">Prix</label>
-        <ValidationIcon isValid={serverErrors === "" && validPrice} />
+        {/* <ValidationIcon isValid={serverErrors === "" && validEmail} /> */}
       </div>
 
       <div className={inputWrapper}>
@@ -143,10 +99,9 @@ const NewPropertyForm = () => {
           id="address-input"
           placeholder="Adresse"
           ref={address}
-          onChange={() => setValidAddress(addressValidation())}
         />
         <label htmlFor="address-input">Adresse</label>
-        <ValidationIcon isValid={serverErrors === "" && validAddress} />
+        {/* <ValidationIcon isValid={serverErrors === "" && validEmail} /> */}
       </div>
 
       <div className={inputWrapper}>
@@ -156,10 +111,9 @@ const NewPropertyForm = () => {
           id="picture-input"
           placeholder="Photo"
           ref={picture}
-          onChange={() => setValidPicture(pictureValidation())}
         />
         <label htmlFor="picture-input">Photo</label>
-        <ValidationIcon isValid={serverErrors === "" && validPicture} />
+        {/* <ValidationIcon isValid={serverErrors === "" && validEmail} /> */}
       </div>
 
       <input
@@ -167,7 +121,7 @@ const NewPropertyForm = () => {
         type="submit"
         role="button"
         value="Confirmer"
-        disabled={!canSave}
+        // disabled={!canSave}
       />
     </form>
   );
