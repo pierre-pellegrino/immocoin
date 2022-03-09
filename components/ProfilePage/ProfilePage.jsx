@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
-import {profilePage, profilePage__hero, profilePage__content, profilePage__content__img, left, right } from './profile_page.module.scss';
+import {modal, profilePage, profilePage__hero, profilePage__content, profilePage__content__img, left, right } from './profile_page.module.scss';
 import PropertiesList from '../PropertiesList/PropertiesList';
 import {useAtom} from 'jotai';
 import {userAtom} from 'store';
 import Image from 'next/image';
 import Modal from 'react-modal';
 import APIManager from 'pages/api/axiosMethods';
+import { btn } from 'styles/form.module.scss';
 
 const ProfilePage = ({properties}) => {
   const [user] = useAtom(userAtom);
@@ -46,7 +47,7 @@ const ProfilePage = ({properties}) => {
           <p className="mb1"> Nom : {user?.last_name ?? "Non renseigné"} </p>
           <p className="mb1"> Prénom : {user?.first_name ?? "Non renseigné"} </p>
           <p className="mb1"> Email : {user?.email ?? "Non renseigné"} </p>
-          <button onClick={() => setModalIsOpen(true)}>Editer mon profil</button>
+          <button className={btn} onClick={() => setModalIsOpen(true)}>Editer mon profil</button>
         </div>
         <div className={right}>
             <p className="mb1 bolder">Mes annonces</p>
@@ -54,20 +55,21 @@ const ProfilePage = ({properties}) => {
         </div>
       </div>
 
-      <Modal 
+      <Modal
+          className={modal}
           style={customStyles}
           isOpen={modalIsOpen}
           onRequestClose={() => setModalIsOpen(false)}
           ariaHideApp={false}
         >
-          <label>Nouveau prénom</label>
+          <label>Prénom</label>
           <input 
             type="text"
             value={firstname}
             onChange={(e) => setFirstname(e.target.value)} 
           />
 
-          <label>Nouveau nom</label>
+          <label>Nom</label>
           <input 
             type="text"
             value={lastname}
@@ -81,7 +83,7 @@ const ProfilePage = ({properties}) => {
             ref={avatar}
           />
           <br />
-          <button onClick={() => handleSave()}>Enregistrer</button>
+          <button className={btn} onClick={() => handleSave()}>Enregistrer</button>
       </Modal>
     </div>
   );
@@ -96,6 +98,9 @@ const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
   },
+  overlay: {
+    zIndex: 1000
+  }
 };
 
 export default ProfilePage;
