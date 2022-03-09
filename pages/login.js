@@ -1,26 +1,13 @@
 import LoginForm from 'components/LoginForm/LoginForm';
 import styles from 'styles/Home.module.css'
 
-const login = ({ redirected }) => {
+
+const login = () => {
   return (
     <main className={styles.main}>
-      <LoginForm redirected={redirected} />
+      <LoginForm />
     </main>
   )
 }
 
 export default login;
-
-export const getServerSideProps = async (context) => {
-  if (context.query.redirected === "true") {
-    return {
-      props: {
-        redirected: true,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
-}
