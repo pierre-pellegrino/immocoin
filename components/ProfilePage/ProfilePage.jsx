@@ -9,7 +9,7 @@ import APIManager from 'pages/api/axiosMethods';
 import { btn } from 'styles/form.module.scss';
 import withPrivateRoute from "components/withPrivateRoute";
 
-const ProfilePage = ({properties}) => {
+const ProfilePage = ({ properties }) => {
   const [user] = useAtom(userAtom);
   const [firstname, setFirstname] = useState('')
   const [lastname, setLastname] = useState('')
@@ -104,4 +104,4 @@ const customStyles = {
   }
 };
 
-export default withPrivateRoute(ProfilePage);
+export default ProfilePage;

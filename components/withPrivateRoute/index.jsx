@@ -1,20 +1,20 @@
 /* eslint-disable react/display-name */
 import { useAtom } from "jotai";
 import { useRouter } from "next/router";
-import { userAtom } from "store";
+import { isConnectedAtom } from "store";
 
 const withPrivateRoute = (WrappedComponent) => {
   return (props) => {
     if (typeof window !== "undefined") {
-      const Router = useRouter();
-      const [isConnected] = useAtom(userAtom);
+      const router = useRouter();
+      const [isConnected] = useAtom(isConnectedAtom);
       
       if (!isConnected) {
-        Router.replace("/login");
+        router.push("/login?redirected");
         return null;
       }
 
-      return <WrappedComponent {...props} />;
+      return <WrappedComponent { ...props } />;
     }
 
     return null;

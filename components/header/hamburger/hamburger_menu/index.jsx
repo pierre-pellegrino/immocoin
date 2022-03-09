@@ -75,7 +75,7 @@ const HamburgerMenu = ({ connected, menuOpened, setMenuOpened }) => {
     content = (
       <>
         <li className={profile}>
-          <Link href="/profile">
+          <Link href="/profile/">
             <a>
               <div className={profilePictureWrapper}>
                 <Image
