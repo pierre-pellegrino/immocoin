@@ -1,9 +1,9 @@
 import ProfilePage from '../components/ProfilePage/ProfilePage';
 
-const profile = () => {
+const Profile = () => {
   return (
     <ProfilePage />
   );
 }
 
-export default profile;
+export default Profile;

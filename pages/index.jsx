@@ -13,7 +13,7 @@ export default function Home({ properties, error }) {
   let content = (
     <>
       <h1 className={styles.title}>
-        Salut {user?.email ?? "étranger"} !
+        Bonjour {user?.first_name} !
       </h1>
       
       <PropertiesList properties={properties} />
