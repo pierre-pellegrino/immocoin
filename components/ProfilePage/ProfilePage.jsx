@@ -4,6 +4,7 @@ import PropertiesList from '../PropertiesList/PropertiesList';
 import {useAtom} from 'jotai';
 import {userAtom} from 'store';
 import Image from 'next/image';
+import withPrivateRoute from "components/withPrivateRoute";
 
 const ProfilePage = ({properties}) => {
   const [user] = useAtom(userAtom);
@@ -39,4 +40,4 @@ const ProfilePage = ({properties}) => {
   );
 };
 
-export default ProfilePage;
+export default withPrivateRoute(ProfilePage);
