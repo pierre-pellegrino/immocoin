@@ -1,22 +1,26 @@
 import ProfilePage from '../components/ProfilePage/ProfilePage';
 import APIManager from './api/axiosMethods';
 import {useAtom} from 'jotai';
-import {isConnectedAtom} from 'store';
+import {userAtom} from 'store';
 import {useRouter} from 'next/router';
 import { useEffect } from 'react';
 
 
 const profile = ({properties, error}) => {
-  const [user] = useAtom(isConnectedAtom);
+  const [user] = useAtom(userAtom);
   const router = useRouter();
+
+  // const cleanedProperties = properties.filter(property => property.user_id === user.id);
 
   useEffect(() => {
     // Kinda works but cheesy, it briefly shows the page then redirects to home...
-    // (!user) && router.push('/');
+    // update : doesn't work at all kek
+    // (!user) && router.back();
   }, [])
 
   let content = (
     <>
+      {/* <ProfilePage properties={cleanedProperties}/> */}
       <ProfilePage properties={properties}/>
     </>
   )

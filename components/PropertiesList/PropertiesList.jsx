@@ -1,9 +1,9 @@
 import PropertyCard from "../PropertyCard/PropertyCard";
-import { propertiesListWrapper } from './propertieslist.module.scss';
+import { propertiesListWrapper, propertiesListProfile } from './propertieslist.module.scss';
 import Link from 'next/link';
 
-const PropertiesList = ({ properties }) => (
-  <div className={propertiesListWrapper}>
+const PropertiesList = ({ properties, profile }) => (
+  <div className={`${propertiesListWrapper} ${profile && propertiesListProfile}`}>
     {properties.map(property => {
       const { title, description, price, id } = property.property;
       const picture = property.picture;
