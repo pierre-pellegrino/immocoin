@@ -10,6 +10,7 @@ import {
   btn,
   textarea,
 } from "styles/form.module.scss";
+import withPrivateRoute from "components/withPrivateRoute";
 
 const NewPropertyForm = () => {
   const title = useRef();
@@ -126,4 +127,4 @@ const NewPropertyForm = () => {
   );
 };
 
-export default NewPropertyForm;
+export default withPrivateRoute(NewPropertyForm);
