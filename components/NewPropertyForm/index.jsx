@@ -1,5 +1,6 @@
 import Errors from "components/Errors";
 import ValidationIcon from "components/ValidationIcon";
+import APIManager from "pages/api/axiosMethods";
 import { useRef } from "react";
 import {
   form,
@@ -16,13 +17,13 @@ const NewPropertyForm = () => {
   const address = useRef();
   const picture = useRef();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formObj = {
       title: title.current.value,
       description: description.current.value,
-      price: price.current.value,
+      price: parseInt(price.current.value, 10),
       address: address.current.value,
       picture: picture.current.files[0],
     }
@@ -32,6 +33,14 @@ const NewPropertyForm = () => {
     Object.keys(formObj).forEach((key) => {
       data.append(key, formObj[key])
     });
+
+    try {
+      console.log(data);
+      const response = await APIManager.newProperty(data);
+      console.log(response.data)
+    } catch (e) {
+      console.error(e.response);
+    }
   };
 
   return (
@@ -103,7 +112,7 @@ const NewPropertyForm = () => {
         className={btn}
         type="submit"
         role="button"
-        value="Me connecter"
+        value="Confirmer"
         // disabled={!canSave}
       />
     </form>
