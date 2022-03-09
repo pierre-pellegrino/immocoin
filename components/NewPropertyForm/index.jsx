@@ -1,7 +1,8 @@
 import Errors from "components/Errors";
 import ValidationIcon from "components/ValidationIcon";
+import { useRouter } from "next/router";
 import APIManager from "pages/api/axiosMethods";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {
   form,
   input,
@@ -16,6 +17,12 @@ const NewPropertyForm = () => {
   const price = useRef();
   const address = useRef();
   const picture = useRef();
+  const [validTitle, setValidTitle] = useState(false);
+  const [validDescription, setValidDescription] = useState(false);
+  const [validPrice, setValidPrice] = useState(false);
+  const [validAddress, setValidAddress] = useState(false);
+  const [serverErrors, setServerErrors] = useState("");
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,11 +42,11 @@ const NewPropertyForm = () => {
     });
 
     try {
-      console.log(data);
       const response = await APIManager.newProperty(data);
-      console.log(response.data)
-    } catch (e) {
-      console.error(e.response);
+      console.log(response.data);
+      router.push("/");
+    } catch (error) {
+      setServerErrors(error.response.data.error);
     }
   };
 
@@ -47,7 +54,7 @@ const NewPropertyForm = () => {
     <form className={form} onSubmit={handleSubmit}>
       <h1>Créer un logement</h1>
 
-      {/* {serverErrors !== "" && <Errors serverErrors={serverErrors} />} */}
+      {serverErrors !== "" && <Errors serverErrors={serverErrors} />}
 
       <div className={inputWrapper}>
         <input

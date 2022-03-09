@@ -50,6 +50,7 @@ const LoginForm = () => {
       setUser(response.data);
       router.push("/");
     } catch (error) {
+      console.error(error.response)
       setServerErrors(error.response.data);
     }
   };
