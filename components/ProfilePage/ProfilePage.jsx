@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import {modal, profilePage, profilePage__hero, profilePage__content, profilePage__content__img, left, right } from './profile_page.module.scss';
 import PropertiesList from '../PropertiesList/PropertiesList';
 import {useAtom} from 'jotai';
@@ -13,18 +13,18 @@ const ProfilePage = ({properties}) => {
   const [user] = useAtom(userAtom);
   const [firstname, setFirstname] = useState('')
   const [lastname, setLastname] = useState('')
-  const avatar = useRef();
+  const [avatar, setAvatar] = useState()
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const handleSave = async () => {
-    const newProfile = { 
+  const handleSubmit = async () => {
+    const data = { 
       firstname: firstname,
       lastname: lastname,
-      avatar: avatar.current.files[0]
+      avatar: avatar
     }
-    console.log('newProfile: ', newProfile)
-    const response = await APIManager.editProfile(user.id, newProfile)
-    console.log('response: ', response)
+    console.log('data of the new profile: ', data)
+    const response = await APIManager.editProfile(data)
+    //console.log('response: ', response)
   }
 
   return (
@@ -56,35 +56,18 @@ const ProfilePage = ({properties}) => {
         </div>
       </div>
 
-      <Modal
-          className={modal}
-          style={customStyles}
-          isOpen={modalIsOpen}
-          onRequestClose={() => setModalIsOpen(false)}
-          ariaHideApp={false}
-        >
-          <label>Prénom</label>
-          <input 
-            type="text"
-            value={firstname}
-            onChange={(e) => setFirstname(e.target.value)} 
-          />
-
-          <label>Nom</label>
-          <input 
-            type="text"
-            value={lastname}
-            onChange={(e) => setLastname(e.target.value)} 
-          />
-
-          <label>Avatar</label>
-          <input 
-            type="file"
-            accept="image/png, image/jpeg"
-            ref={avatar}
-          />
-          <br />
-          <button className={btn} onClick={() => handleSave()}>Enregistrer</button>
+      <Modal className={modal} style={customStyles} isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} ariaHideApp={false}>
+        <label>Prénom</label>
+        <input type="text" value={firstname} onChange={(e) => setFirstname(e.target.value)} />
+        
+        <label>Nom</label>
+        <input type="text" value={lastname} onChange={(e) => setLastname(e.target.value)} />
+        
+        <label>Avatar</label>
+        <input type="file" accept="image/png, image/jpeg" onChange={(e) => setAvatar(e.target.files[0])}/>
+        
+        <br />
+        <button className={btn} onClick={() => handleSubmit()}>Enregistrer</button>
       </Modal>
     </div>
   );
