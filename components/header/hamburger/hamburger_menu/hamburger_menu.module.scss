@@ -1,0 +1,55 @@
+.menu {
+  position: absolute;
+  right: 0;
+  top: 150%;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  border-radius: 0.3rem;
+  min-width: 20rem;
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
+
+.navItems {
+  list-style: none;
+
+  li, a {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+    width: 100%;
+    cursor: pointer;
+
+    svg {
+      width: 36px;
+      margin-right: 0.5rem;
+    }
+
+    &:first-child {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.profilePictureWrapper {
+  margin-right: 1.5rem;
+}
+
+.profilePicture {
+  border-radius: 50%;
+  background-color: hsl(49, 85%, 49%);
+}
+
+.profile {
+  font-size: 1.5rem;
+  font-weight: bold;
+}

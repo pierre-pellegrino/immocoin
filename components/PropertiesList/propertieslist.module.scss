@@ -1,0 +1,29 @@
+.propertiesListWrapper {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-gap: 1.5rem;
+}
+
+@media screen and (max-width: 1165px) {
+  .propertiesListWrapper {
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+
+@media screen and (max-width: 785px) {
+  .propertiesListWrapper {
+    grid-template-columns: repeat(1,1fr);
+  }
+}
+
+@media screen and (max-width: 1445px) {
+  .propertiesListProfile {
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+
+@media screen and (max-width: 1055px) {
+  .propertiesListProfile {
+    grid-template-columns: repeat(1,1fr);
+  }
+}
