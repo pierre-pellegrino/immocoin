@@ -30,7 +30,7 @@ const HamburgerMenu = ({ connected, menuOpened, setMenuOpened }) => {
   const handleLogOut = async () => {
     await APIManager.logOut();
     setUser(null);
-  }
+  };
 
   let content = (
     <>
@@ -88,17 +88,21 @@ const HamburgerMenu = ({ connected, menuOpened, setMenuOpened }) => {
         </li>
         <hr />
         <li>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            x="0px"
-            y="0px"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12,2C6.477,2,2,6.477,2,12s4.477,10,10,10s10-4.477,10-10S17.523,2,12,2z M16,13h-3v3c0,0.552-0.448,1-1,1h0 c-0.552,0-1-0.448-1-1v-3H8c-0.552,0-1-0.448-1-1v0c0-0.552,0.448-1,1-1h3V8c0-0.552,0.448-1,1-1h0c0.552,0,1,0.448,1,1v3h3 c0.552,0,1,0.448,1,1v0C17,12.552,16.552,13,16,13z"></path>
-          </svg>
-          Créer une annonce
+          <Link href="/properties/new">
+            <a>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12,2C6.477,2,2,6.477,2,12s4.477,10,10,10s10-4.477,10-10S17.523,2,12,2z M16,13h-3v3c0,0.552-0.448,1-1,1h0 c-0.552,0-1-0.448-1-1v-3H8c-0.552,0-1-0.448-1-1v0c0-0.552,0.448-1,1-1h3V8c0-0.552,0.448-1,1-1h0c0.552,0,1,0.448,1,1v3h3 c0.552,0,1,0.448,1,1v0C17,12.552,16.552,13,16,13z"></path>
+              </svg>
+              Créer une annonce
+            </a>
+          </Link>
         </li>
         <li onClick={handleLogOut}>
           <svg
@@ -125,7 +129,7 @@ const HamburgerMenu = ({ connected, menuOpened, setMenuOpened }) => {
           [active]: menuOpened,
         })
       }
-      >
+    >
       <ul className={navItems}>{content}</ul>
     </nav>
   );

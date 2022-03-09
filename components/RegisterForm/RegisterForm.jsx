@@ -4,7 +4,7 @@ import {
   input,
   inputWrapper,
   btn,
-} from "components/LoginForm/form.module.scss";
+} from "styles/form.module.scss";
 import APIManager from "pages/api/axiosMethods";
 import { useAtom } from "jotai";
 import { userAtom, isConnectedAtom } from "store";
