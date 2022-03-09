@@ -1,17 +1,30 @@
-import ProfilePage from "../components/ProfilePage/ProfilePage";
-import APIManager from "./api/axiosMethods";
-import { Oval } from "react-loader-spinner";
-import withPrivateRoute from "components/withPrivateRoute";
+import ProfilePage from '../components/ProfilePage/ProfilePage';
+import APIManager from './api/axiosMethods';
+import {useAtom} from 'jotai';
+import {userAtom} from 'store';
+import {useRouter} from 'next/router';
+import { useEffect } from 'react';
+import { Oval } from 'react-loader-spinner';
 
-const Profile = ({ properties, error }) => {
+
+const Profile = ({properties, error}) => {
+  const [user] = useAtom(userAtom);
+  const router = useRouter();
+
   // const cleanedProperties = properties.filter(property => property.user_id === user.id);
+
+  useEffect(() => {
+    // Kinda works but cheesy, it briefly shows the page then redirects to home...
+    // update : doesn't work at all kek
+    // (!user) && router.back();
+  }, [])
 
   let content = (
     <>
       {/* <ProfilePage properties={cleanedProperties}/> */}
-      <ProfilePage properties={properties} />
+      <ProfilePage properties={properties}/>
     </>
-  );
+  )
 
   if (error) {
     content = (
@@ -19,22 +32,21 @@ const Profile = ({ properties, error }) => {
         <Oval
           height="100"
           width="100"
-          color="hsl(212, 100%, 48%)"
-          secondaryColor="#ddd"
-          ariaLabel="loading"
+          color='hsl(212, 100%, 48%)'
+          secondaryColor='#ddd'
+          ariaLabel='loading'
         />
-        <div style={{ marginTop: "2rem" }}>
-          Oups ! Nous rencontrons actuellement un petit souci, veuillez revenir
-          plus tard !
-        </div>
+        <div style={{ marginTop: "2rem" }}>Oups ! Nous rencontrons actuellement un petit souci, veuillez revenir plus tard !</div>
       </>
     );
   }
 
-  return content;
-};
+  return (
+    content
+  )
+}
 
-export default withPrivateRoute(Profile);
+export default Profile;
 
 export const getStaticProps = async () => {
   try {
@@ -51,6 +63,7 @@ export const getStaticProps = async () => {
       props: {
         error: true,
       },
-    };
+    }
   }
-};
+
+}
