@@ -1,3 +1,4 @@
+import withPrivateRoute from 'components/withPrivateRoute';
 import ProfilePage from '../components/ProfilePage/ProfilePage';
 
 const Profile = () => {
@@ -6,4 +7,4 @@ const Profile = () => {
   );
 }
 
-export default Profile;
+export default withPrivateRoute(Profile);

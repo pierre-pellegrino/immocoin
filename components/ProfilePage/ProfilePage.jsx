@@ -68,13 +68,18 @@ const ProfilePage = () => {
 
   const handleSave = async () => {
     const data = {
-      firstname: firstname,
-      lastname: lastname,
-      //avatar: avatar.current.files[0]
+      first_name: firstname,
+      last_name: lastname,
+      avatar: avatar.current.files[0]
     }
 
+    const formData = new FormData();
+    Object.keys(data).forEach((key) => {
+      formData.append(key, data[key])
+    });
+
     try {
-      const response = await APIManager.editProfile(data);
+      const response = await APIManager.editProfile(formData);
       setUser(response.data)
       setModalIsOpen(false);
     } catch (error) {
