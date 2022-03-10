@@ -25,7 +25,6 @@ const ProfilePage = () => {
   const [lastname, setLastname] = useState("");
   const avatar = useRef();
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [properties, setProperties] = useState();
   const [error, setError] = useState();
