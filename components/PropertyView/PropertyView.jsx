@@ -46,17 +46,9 @@ const PropertyView = ({ property, picture, user }) => {
 
         <h3>Descriptif du bien : </h3>
         <p>{description}</p>
-
-        {/* 
-          Encore ce problème de récupération asynchrone du current user, sinon dans la logique ça fonctionne :
-          Le bouton edit ne s'affiche que pour le propriétaire. 
-          Quand ce sera fonctionnel, décommenter les lignes 57 et 59.
-        */}
-        {/* {currentUser?.id ?? "ça devrait être l'id du current user"} */}
-        {/* {user_id ?? "ça devrait etre l'id du propriétaire"} */}
-        {/* {currentUser?.id === user_id && */}
+        {currentUser?.id === user_id && (
           <button className={btn} onClick={() => setModalIsOpen(true)}>Editer cette annonce</button>
-        {/* }        */}
+        )}
       </div>
 
       
