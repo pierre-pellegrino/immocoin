@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["api-immocoin.herokuapp.com"]
+    domains: ["api-immocoin.herokuapp.com", "api-immocoin-staging.herokuapp.com", "localhost"]
   }
 }
 
