@@ -50,7 +50,7 @@
       align-items: center;
       // justify-content: center;
       flex-grow: 1;
-      max-height: calc(100vh - 213px);
+      max-height: calc(100vh - 213px - 108px);
       overflow-y: scroll;
       padding-bottom: 1em;
     }
@@ -83,7 +83,7 @@
   -o-border-radius: 4px;
   box-shadow: 0 0px 4px 2px rgba(0,0,0,0.2);
 
-  input {
+  input, .input {
     width: 100%;
     padding: 0.5em;
     border-radius: 6px;
@@ -121,5 +121,9 @@
       -ms-transition: transform 0.3s, opacity 0.3s;
       -o-transition: transform 0.3s, opacity 0.3s;
     }
+  }
+
+  textarea {
+    resize: none;
   }
 }

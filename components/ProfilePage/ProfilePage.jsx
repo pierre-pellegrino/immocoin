@@ -67,14 +67,26 @@ const ProfilePage = () => {
   }
 
   const handleSave = async () => {
-    const newProfile = {
+    const formObj = {
       firstname: firstname,
       lastname: lastname,
-      avatar: avatar.current.files[0],
-    };
-    console.log("newProfile: ", newProfile);
-    const response = await APIManager.editProfile(user.id, newProfile);
-    console.log("response: ", response);
+      avatar: avatar.current.files[0]
+    }
+  
+    const data = new FormData();
+  
+    Object.keys(formObj).forEach((key) => {
+      data.append(key, formObj[key])
+    });
+
+    try {
+      const response = await APIManager.editProfile(user.id, data);
+      console.log(response.data);
+      router.push(`/profile`);
+      setModalIsOpen(false);
+    } catch (error) {
+      console.warn(error);
+    }
   };
 
   let displayedAvatar = (

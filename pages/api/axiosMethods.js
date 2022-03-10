@@ -48,6 +48,14 @@ export default class APIManager {
     });
     return response;
   }
+  static async editProperty(id, payload) {
+    const response = await API.put(`/properties/${id}`, payload, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response;
+  }
   static async getPropertyDetails(id) {
     const response = await API.get(`/properties/${id}`)
     return response;
@@ -60,8 +68,7 @@ export default class APIManager {
     });
     return response;
   }
-  static async editProfile(userId, newProfile) {
-    // const response = await API.patch(`/member-update/${userId}`, newProfile, {
+  static async editProfile(newProfile) {
     const response = await API.put(`/member-update/`, newProfile, {
       headers: {
         "Content-Type": "multipart/form-data",

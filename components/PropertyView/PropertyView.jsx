@@ -7,15 +7,21 @@ import {
   profilePicture,
 } from "./property_view.module.scss";
 import { useAtom } from "jotai";
-import { isConnectedAtom } from "store";
+import { isConnectedAtom, userAtom } from "store";
 import Image from "next/image";
 import { shimmer, toBase64 } from "lib/image_loading";
+import EditPropertyModal from "../EditPropertyModal/EditPropertyModal";
+import { btn } from 'styles/form.module.scss';
+import { useState } from "react";
+
 
 const PropertyView = ({ property, picture, user }) => {
   const [isConnected] = useAtom(isConnectedAtom);
-  const { title, description, price, address } = property;
+  const [currentUser] = useAtom(userAtom);
+  const { title, description, price, address, id, user_id } = property;
   const { email, first_name, last_name, avatar } = user;
   const cleanPrice = new String(price).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   return (
     <div className={propertyViewWrapper}>
@@ -36,9 +42,24 @@ const PropertyView = ({ property, picture, user }) => {
           />
         </div>
 
+        <EditPropertyModal isOpen={modalIsOpen} toggle={() => setModalIsOpen()} id={id} property={property}/>
+
         <h3>Descriptif du bien : </h3>
         <p>{description}</p>
+
+        {/* 
+          Encore ce problème de récupération asynchrone du current user, sinon dans la logique ça fonctionne :
+          Le bouton edit ne s'affiche que pour le propriétaire. 
+          Quand ce sera fonctionnel, décommenter les lignes 57 et 59.
+        */}
+        {/* {currentUser?.id ?? "ça devrait être l'id du current user"} */}
+        {/* {user_id ?? "ça devrait etre l'id du propriétaire"} */}
+        {/* {currentUser?.id === user_id && */}
+          <button className={btn} onClick={() => setModalIsOpen(true)}>Editer cette annonce</button>
+        {/* }        */}
       </div>
+
+      
       <div className={propertyViewOwner}>
         <div className={top}>
           <h1> Contacter le vendeur </h1>
@@ -70,6 +91,7 @@ const PropertyView = ({ property, picture, user }) => {
               ? address
               : "Connectez-vous pour accéder aux coordonnées du vendeur."}
           </p>
+          
         </div>
       </div>
     </div>
