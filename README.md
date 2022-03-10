@@ -6,7 +6,7 @@
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)<br />
 [![nextjs badge](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
 
-[![Logo](https://raw.githubusercontent.com/Beygs/Beygs/main/assets/Immocoincoin.png)](https://immocoincoin.herokuapp.com)
+[![Logo](https://raw.githubusercontent.com/Beygs/Beygs/main/assets/Immocoincoin%20(1).png)](https://immocoincoin.herokuapp.com)
 
 [Pitch du projet](#pitch-du-projet) | 
 [Liens Utiles](#liens-utiles) | 
