@@ -46,7 +46,7 @@ const EditPropertyModal = ({isOpen, toggle, id, property}) => {
           onRequestClose={() => toggle(false)}
           ariaHideApp={false}
         >
-          <label>Titre de l'annonce</label>
+          <label>Titre de l&apos;annonce</label>
           <input 
             type="text"
             ref={title}
