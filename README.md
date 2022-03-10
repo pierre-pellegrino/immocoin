@@ -11,6 +11,7 @@
 [Pitch du projet](#pitch-du-projet) | 
 [Live Site](#liens-utiles) | 
 [Installation](#installation) | 
+[L'Equipe](#l-equipe) | 
 [Crédits et remerciements](#crédits-et-remerciements)
 
 </div>
@@ -30,6 +31,13 @@ Marketplace d'immobilier, c'est très cool
 1. `yarn dev`
 1. Go to [http://localhost:3000](http://localhost:3000)
 1. Lezgo !
+
+## L'Equipe
+
+- [Pierre Pellegrino](https://github.com/pierre-pellegrino)
+- [Anthony Charpenay](https://github.com/talmidiel)
+- [Timothée Gimbert](https://github.com/TimotheeGimbert)
+- [Boris Gilles](https://github.com/Beygs)
 
 ## Crédits et remerciements
 
