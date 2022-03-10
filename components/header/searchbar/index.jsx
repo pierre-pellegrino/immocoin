@@ -1,8 +1,14 @@
 import { searchContainer, search } from "./searchbar.module.scss";
 
 const Searchbar = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    
+  }
+
   return (
-    <div className={searchContainer}>
+    <form className={searchContainer}>
       <label htmlFor="searchBar">
         <svg
           aria-label="search-icon"
@@ -41,7 +47,7 @@ const Searchbar = () => {
         className={search}
         autoComplete="off"
       />
-    </div>
+    </form>
   );
 };
 

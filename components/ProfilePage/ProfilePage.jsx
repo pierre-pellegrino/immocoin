@@ -9,14 +9,55 @@ import APIManager from 'pages/api/axiosMethods';
 import { btn } from 'styles/form.module.scss';
 import withPrivateRoute from "components/withPrivateRoute";
 import {useRouter} from 'next/router';
+import { Oval } from 'react-loader-spinner';
 
-const ProfilePage = ({properties}) => {
+const ProfilePage = () => {
   const [user] = useAtom(userAtom);
   const [firstname, setFirstname] = useState('')
   const [lastname, setLastname] = useState('')
   const avatar = useRef();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
+  const [properties, setProperties] = useState();
+  const [error, setError] = useState();
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await APIManager.getPropertyFromUser(user.id);
+        setProperties(response.data.properties);
+        setIsLoading(false);
+      } catch (e) {
+        console.error(e.response);
+        setError("Oups ! Il y a eu un soucis 😅");
+      }
+    }
+
+    if (user) fetchData();
+  }, [user]);
+
+  let showProperties = (
+    <Oval
+      height="100"
+      width="100"
+      color="hsl(212, 100%, 48%)"
+      secondaryColor="#ddd"
+      ariaLabel="loading"
+    />
+  );
+
+  if (!isLoading && !error) {
+    showProperties = (
+      <PropertiesList properties={properties} profile />
+    );
+  }
+
+  if (error) {
+    showProperties = (
+      <Errors serverErrors={error} />
+    );
+  }
 
   const handleSave = async () => {
     // const newProfile = { 
@@ -69,13 +110,16 @@ const ProfilePage = ({properties}) => {
           </div>
           <p className="mb1 bolder"> Mes coordonnées </p>
           <p className="mb1"> Nom : {user?.last_name ?? "Non renseigné"} </p>
-          <p className="mb1"> Prénom : {user?.first_name ?? "Non renseigné"} </p>
+          <p className="mb1">
+            {" "}
+            Prénom : {user?.first_name ?? "Non renseigné"}{" "}
+          </p>
           <p className="mb1"> Email : {user?.email ?? "Non renseigné"} </p>
           <button className={btn} onClick={() => setModalIsOpen(true)}>Editer mon profil</button>
         </div>
         <div className={right}>
-            <p className="mb1 bolder">Mes annonces</p>
-            <PropertiesList properties={properties} profile/>
+          <p className="mb1 bolder">Mes annonces</p>
+          {showProperties}
         </div>
       </div>
 

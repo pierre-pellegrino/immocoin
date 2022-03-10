@@ -60,6 +60,14 @@ export default class APIManager {
     const response = await API.get(`/properties/${id}`)
     return response;
   }
+  static async getPropertyFromUser(user_id) {
+    const response = await API.get("/properties", {
+      params: {
+        user_id,
+      },
+    });
+    return response;
+  }
   static async editProfile(newProfile) {
     const response = await API.put(`/member-update/`, newProfile, {
       headers: {

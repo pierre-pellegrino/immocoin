@@ -1,9 +1,12 @@
 import Link from "next/link";
+import APIManager from "pages/api/axiosMethods";
 import HamburgerIcon from "./hamburger";
 import { header, nav, navItems, title, hamburger } from "./header.module.scss";
 import Searchbar from "./searchbar";
 
-const Header = () => {
+const Header = ({ properties }) => {
+  // console.log(properties);
+  
   return (
     <header className={header}>
       <nav className={nav}>
