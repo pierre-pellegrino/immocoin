@@ -2,9 +2,9 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 
 
-const APIBaseUrl = 'https://api-immocoin.herokuapp.com'
+//const APIBaseUrl = 'https://api-immocoin.herokuapp.com'
 //const APIBaseUrl = 'https://api-immocoin-staging.herokuapp.com'
-//const APIBaseUrl = 'http://localhost:3000'
+const APIBaseUrl = 'http://localhost:3000'
 
 const APIRequest = axios.create({ baseURL: APIBaseUrl });
 
@@ -48,8 +48,12 @@ export default class APIManager {
   
   static async editProfile(data) {
     const url = '/member-update'
-    console.log(data)
-    const response = await APIRequest.patch(url, data)
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    }
+    const response = await APIRequest.patch(url, data, config)
     return response;
   }
 

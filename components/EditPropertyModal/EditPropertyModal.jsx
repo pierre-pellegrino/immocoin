@@ -30,7 +30,6 @@ const EditPropertyModal = ({isOpen, toggle, id, property}) => {
 
     try {
       const response = await APIManager.editProperty(id, data);
-      console.log(response.data);
       router.push(`/properties/${response.data.property.id}`);
       toggle(false);
     } catch (error) {

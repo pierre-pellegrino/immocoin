@@ -5,7 +5,6 @@ import { header, nav, navItems, title, hamburger } from "./header.module.scss";
 import Searchbar from "./searchbar";
 
 const Header = ({ properties }) => {
-  // console.log(properties);
   
   return (
     <header className={header}>

@@ -59,7 +59,6 @@ const RegisterForm = () => {
 
     try {
       const response = await APIManager.register(data);
-      console.log(response);
       setUser(response.data);
       router.push("/");
     } catch (error) {
