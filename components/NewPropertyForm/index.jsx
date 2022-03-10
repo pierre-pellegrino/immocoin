@@ -76,7 +76,6 @@ const NewPropertyForm = () => {
 
     try {
       const response = await APIManager.newProperty(data);
-      console.log(response.data);
       router.push(`/properties/${response.data.property.id}`);
     } catch (error) {
       const errorText = error.response.data.error;
