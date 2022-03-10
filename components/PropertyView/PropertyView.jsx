@@ -42,7 +42,7 @@ const PropertyView = ({ property, picture, user }) => {
           />
         </div>
 
-        <EditPropertyModal isOpen={modalIsOpen} toggle={() => setModalIsOpen()} id={id}/>
+        <EditPropertyModal isOpen={modalIsOpen} toggle={() => setModalIsOpen()} id={id} property={property}/>
 
         <h3>Descriptif du bien : </h3>
         <p>{description}</p>

@@ -5,7 +5,7 @@ import { btn } from 'styles/form.module.scss';
 import APIManager from "pages/api/axiosMethods";
 import { useRouter } from "next/router";
 
-const EditPropertyModal = ({isOpen, toggle, id}) => {
+const EditPropertyModal = ({isOpen, toggle, id, property}) => {
   const title = useRef();
   const description = useRef();
   const price = useRef();
@@ -50,6 +50,7 @@ const EditPropertyModal = ({isOpen, toggle, id}) => {
           <input 
             type="text"
             ref={title}
+            defaultValue={property.title}
           />
 
           <label>Description</label>
@@ -57,6 +58,7 @@ const EditPropertyModal = ({isOpen, toggle, id}) => {
             className={input}
             type="text"
             ref={description}
+            defaultValue={property.description}
           />
 
           <label>Prix</label>
@@ -64,12 +66,14 @@ const EditPropertyModal = ({isOpen, toggle, id}) => {
             type="number"
             min="0"
             ref={price}
+            defaultValue={property.price}
           />
 
           <label>Adresse</label>
           <input 
             type="text"
             ref={address}
+            defaultValue={property.address}
           />
 
           <label>Photo</label>
