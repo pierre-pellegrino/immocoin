@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { userAtom } from "store";
 import Header from "../header";
 import APIManager from "pages/api/axiosMethods";
+import Footer from 'components/Footer/Footer';
 
 const Layout = ({ children }) => {
   const [_user, setUser] = useAtom(userAtom);
@@ -28,6 +29,7 @@ const Layout = ({ children }) => {
       <main>
         {children}
       </main>
+      <Footer />
     </>
   );
 };

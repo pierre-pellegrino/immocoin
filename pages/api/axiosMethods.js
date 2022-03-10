@@ -48,8 +48,36 @@ export default class APIManager {
     });
     return response;
   }
+  static async editProperty(id, payload) {
+    const response = await API.put(`/properties/${id}`, payload, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response;
+  }
+  static async deleteProperty(id) {
+    const response = await API.delete(`/properties/${id}`);
+    return response;
+  }
   static async getPropertyDetails(id) {
     const response = await API.get(`/properties/${id}`)
+    return response;
+  }
+  static async getPropertyFromUser(user_id) {
+    const response = await API.get("/properties", {
+      params: {
+        user_id,
+      },
+    });
+    return response;
+  }
+  static async editProfile(newProfile) {
+    const response = await API.put(`/member-update/`, newProfile, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
     return response;
   }
 }

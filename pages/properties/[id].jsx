@@ -30,7 +30,7 @@ const PropertyDetail = ({ user, property, picture, error }) => {
   );
 }
 
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
   const { id } = context.params;
 
   const response = await APIManager.getPropertyDetails(id);
@@ -42,28 +42,6 @@ export const getStaticProps = async (context) => {
       picture,
       user,
     },
-  }
-}
-
-export const getStaticPaths = async () => {
-  try {
-    const response = await APIManager.getAllProperties();
-    const paths = response.data.properties.map((property) => ({
-      params: {
-        id: property.property.id.toString()
-      }
-    }));
-  
-    return {
-      paths,
-      fallback: false,
-    }
-  } catch (e) {
-    return {
-      props: {
-        error: true,
-      },
-    };
   }
 }
 

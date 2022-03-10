@@ -3,24 +3,27 @@ import { propertiesListWrapper, propertiesListProfile } from './propertieslist.m
 import Link from 'next/link';
 
 const PropertiesList = ({ properties, profile }) => (
-  <div className={`${propertiesListWrapper} ${profile && propertiesListProfile}`}>
-    {properties.map(property => {
-      const { title, description, price, id } = property.property;
-      const picture = property.picture;
+  <>
+    {properties.length === 0 && <p>Vous n&apos;avez pas encore créé d&apos;annonces</p>}
+    <div className={`${propertiesListWrapper} ${profile && propertiesListProfile}`}>
+      {properties.map(property => {
+        const { title, description, price, id } = property.property;
+        const picture = property.picture;
 
-      return (
-        <Link href={`/properties/${id}`} key={id}>
-          <a><PropertyCard 
-            title={title} 
-            description={description} 
-            picture={picture}
-            price={price} 
-          />
-          </a>
-        </Link>
-      )
-    })}
-  </div>
+        return (
+          <Link href={`/properties/${id}`} key={id}>
+            <a><PropertyCard 
+              title={title} 
+              description={description} 
+              picture={picture}
+              price={price} 
+            />
+            </a>
+          </Link>
+        )
+      })}
+    </div>
+  </>
 );
 
 export default PropertiesList;
