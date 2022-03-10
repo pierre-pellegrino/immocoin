@@ -10,17 +10,23 @@ import { useAtom } from "jotai";
 import { isConnectedAtom } from "store";
 import Image from "next/image";
 import { shimmer, toBase64 } from "lib/image_loading";
+import EditPropertyModal from "../EditPropertyModal/EditPropertyModal";
+import { btn } from 'styles/form.module.scss';
+import { useState } from "react";
+
 
 const PropertyView = ({ property, picture, user }) => {
   const [isConnected] = useAtom(isConnectedAtom);
   const { title, description, price, address } = property;
   const { email, first_name, last_name, avatar } = user;
   const cleanPrice = new String(price).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   return (
     <div className={propertyViewWrapper}>
       <div className="property">
         <h1> Annonce : </h1>
+        <button className={btn} onClick={() => setModalIsOpen(true)}>Editer mon profil</button>
         <h3>{title}</h3>
         <h2 className="primary">{cleanPrice} €</h2>
         <div className={propertyViewPicture}>
@@ -35,6 +41,8 @@ const PropertyView = ({ property, picture, user }) => {
             )}`}
           />
         </div>
+
+        <EditPropertyModal isOpen={modalIsOpen} toggle={() => setModalIsOpen()} />
 
         <h3>Descriptif du bien : </h3>
         <p>{description}</p>
