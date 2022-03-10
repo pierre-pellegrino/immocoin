@@ -7,7 +7,7 @@ import {
   profilePicture,
 } from "./property_view.module.scss";
 import { useAtom } from "jotai";
-import { isConnectedAtom } from "store";
+import { isConnectedAtom, userAtom } from "store";
 import Image from "next/image";
 import { shimmer, toBase64 } from "lib/image_loading";
 import EditPropertyModal from "../EditPropertyModal/EditPropertyModal";
@@ -17,7 +17,8 @@ import { useState } from "react";
 
 const PropertyView = ({ property, picture, user }) => {
   const [isConnected] = useAtom(isConnectedAtom);
-  const { title, description, price, address, id } = property;
+  const [currentUser] = useAtom(userAtom);
+  const { title, description, price, address, id, user_id } = property;
   const { email, first_name, last_name, avatar } = user;
   const cleanPrice = new String(price).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -45,9 +46,17 @@ const PropertyView = ({ property, picture, user }) => {
 
         <h3>Descriptif du bien : </h3>
         <p>{description}</p>
-        <button className={btn} onClick={() => setModalIsOpen(true)}>
-          Editer cette annonce
-        </button>
+
+        {/* 
+          Encore ce problème de récupération asynchrone du current user, sinon dans la logique ça fonctionne :
+          Le bouton edit ne s'affiche que pour le propriétaire. 
+          Quand ce sera fonctionnel, décommenter les lignes 57 et 59.
+        */}
+        {/* {currentUser?.id ?? "ça devrait être l'id du current user"} */}
+        {/* {user_id ?? "ça devrait etre l'id du propriétaire"} */}
+        {/* {currentUser?.id === user_id && */}
+          <button className={btn} onClick={() => setModalIsOpen(true)}>Editer cette annonce</button>
+        {/* }        */}
       </div>
 
       
