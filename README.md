@@ -11,7 +11,7 @@
 [Pitch du projet](#pitch-du-projet) | 
 [Liens Utiles](#liens-utiles) | 
 [Installation](#installation) | 
-[L'Equipe](#l-equipe) | 
+[L'Equipe](#lequipe) | 
 [Crédits et remerciements](#crédits-et-remerciements)
 
 </div>
