@@ -8,13 +8,13 @@ const withPrivateRoute = (WrappedComponent) => {
     if (typeof window !== "undefined") {
       const router = useRouter();
       const [isConnected] = useAtom(isConnectedAtom);
-      
+
       if (!isConnected) {
         router.push("/login?redirected");
         return null;
       }
 
-      return <WrappedComponent { ...props } />;
+      return <WrappedComponent {...props} />;
     }
 
     return null;
