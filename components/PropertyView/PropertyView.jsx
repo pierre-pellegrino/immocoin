@@ -17,7 +17,7 @@ import { useState } from "react";
 
 const PropertyView = ({ property, picture, user }) => {
   const [isConnected] = useAtom(isConnectedAtom);
-  const { title, description, price, address } = property;
+  const { title, description, price, address, id } = property;
   const { email, first_name, last_name, avatar } = user;
   const cleanPrice = new String(price).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -26,7 +26,6 @@ const PropertyView = ({ property, picture, user }) => {
     <div className={propertyViewWrapper}>
       <div className="property">
         <h1> Annonce : </h1>
-        <button className={btn} onClick={() => setModalIsOpen(true)}>Editer mon profil</button>
         <h3>{title}</h3>
         <h2 className="primary">{cleanPrice} €</h2>
         <div className={propertyViewPicture}>
@@ -42,11 +41,16 @@ const PropertyView = ({ property, picture, user }) => {
           />
         </div>
 
-        <EditPropertyModal isOpen={modalIsOpen} toggle={() => setModalIsOpen()} />
+        <EditPropertyModal isOpen={modalIsOpen} toggle={() => setModalIsOpen()} id={id}/>
 
         <h3>Descriptif du bien : </h3>
         <p>{description}</p>
+        <button className={btn} onClick={() => setModalIsOpen(true)}>
+          Editer cette annonce
+        </button>
       </div>
+
+      
       <div className={propertyViewOwner}>
         <div className={top}>
           <h1> Contacter le vendeur </h1>
@@ -78,6 +82,7 @@ const PropertyView = ({ property, picture, user }) => {
               ? address
               : "Connectez-vous pour accéder aux coordonnées du vendeur."}
           </p>
+          
         </div>
       </div>
     </div>

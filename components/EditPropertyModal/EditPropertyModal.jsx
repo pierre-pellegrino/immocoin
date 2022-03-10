@@ -2,15 +2,40 @@ import React, { useRef } from 'react';
 import Modal from 'react-modal';
 import {modal, input} from 'components/ProfilePage/profile_page.module.scss';
 import { btn } from 'styles/form.module.scss';
+import APIManager from "pages/api/axiosMethods";
+import { useRouter } from "next/router";
 
-const EditPropertyModal = ({isOpen, toggle}) => {
+const EditPropertyModal = ({isOpen, toggle, id}) => {
   const title = useRef();
   const description = useRef();
   const price = useRef();
   const address = useRef();
+  const picture = useRef();
+  const router = useRouter();
 
-  const handleEdit = () => {
+  const handleEdit = async () => {
+    const formObj = {
+      title: title.current.value,
+      description: description.current.value,
+      price: parseInt(price.current.value, 10),
+      address: address.current.value,
+      picture: picture.current.files[0],
+    }
+  
+    const data = new FormData();
+  
+    Object.keys(formObj).forEach((key) => {
+      data.append(key, formObj[key])
+    });
 
+    try {
+      const response = await APIManager.editProperty(id, data);
+      console.log(response.data);
+      router.push(`/properties/${response.data.property.id}`);
+      toggle(false);
+    } catch (error) {
+      console.warn(error);
+    }
   };
 
   return (
@@ -51,7 +76,7 @@ const EditPropertyModal = ({isOpen, toggle}) => {
           <input 
             type="file"
             accept="image/png, image/jpeg"
-            // ref={avatar}
+            ref={picture}
           />
           <br />
           <button className={btn} onClick={() => handleEdit()}>Enregistrer</button>
