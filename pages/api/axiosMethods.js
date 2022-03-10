@@ -56,6 +56,10 @@ export default class APIManager {
     });
     return response;
   }
+  static async deleteProperty(id) {
+    const response = await API.delete(`/properties/${id}`);
+    return response;
+  }
   static async getPropertyDetails(id) {
     const response = await API.get(`/properties/${id}`)
     return response;
