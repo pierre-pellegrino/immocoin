@@ -8,6 +8,7 @@ import Modal from 'react-modal';
 import APIManager from 'pages/api/axiosMethods';
 import { btn } from 'styles/form.module.scss';
 import withPrivateRoute from "components/withPrivateRoute";
+import {useRouter} from 'next/router';
 
 const ProfilePage = ({properties}) => {
   const [user] = useAtom(userAtom);
@@ -15,16 +16,38 @@ const ProfilePage = ({properties}) => {
   const [lastname, setLastname] = useState('')
   const avatar = useRef();
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const router = useRouter();
 
   const handleSave = async () => {
-    const newProfile = { 
+    // const newProfile = { 
+    //   firstname: firstname,
+    //   lastname: lastname,
+    //   avatar: avatar.current.files[0]
+    // }
+    // console.log('newProfile: ', newProfile)
+    // const response = await APIManager.editProfile(user.id, newProfile)
+    // console.log('response: ', response)
+
+    const formObj = {
       firstname: firstname,
       lastname: lastname,
       avatar: avatar.current.files[0]
     }
-    console.log('newProfile: ', newProfile)
-    const response = await APIManager.editProfile(user.id, newProfile)
-    console.log('response: ', response)
+  
+    const data = new FormData();
+  
+    Object.keys(formObj).forEach((key) => {
+      data.append(key, formObj[key])
+    });
+
+    try {
+      const response = await APIManager.editProfile(user.id, data);
+      console.log(response.data);
+      router.push(`/profile`);
+      setModalIsOpen(false);
+    } catch (error) {
+      console.warn(error);
+    }
   }
 
   return (
