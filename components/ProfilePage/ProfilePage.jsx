@@ -68,8 +68,8 @@ const ProfilePage = () => {
 
   const handleSave = async () => {
     const data = {
-      firstname: firstname,
-      lastname: lastname,
+      first_name: firstname,
+      last_name: lastname,
       //avatar: avatar.current.files[0]
     }
 
