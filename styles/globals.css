@@ -42,3 +42,7 @@ a {
 .mb1 {
   margin-bottom: 1rem;
 }
+
+.danger-bg {
+  background-color: var(--red)!important;
+}

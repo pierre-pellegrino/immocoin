@@ -37,7 +37,7 @@ const ProfilePage = () => {
         setIsLoading(false);
       } catch (e) {
         console.error(e.response);
-        setError("Oups ! Il y a eu un soucis 😅");
+        setError("Oups ! Il y a eu un souci 😅");
       }
     }
 

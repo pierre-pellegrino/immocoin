@@ -13,6 +13,8 @@ import { shimmer, toBase64 } from "lib/image_loading";
 import EditPropertyModal from "../EditPropertyModal/EditPropertyModal";
 import { btn } from 'styles/form.module.scss';
 import { useState } from "react";
+import APIManager from "pages/api/axiosMethods";
+import { useRouter } from "next/router"
 
 
 const PropertyView = ({ property, picture, user }) => {
@@ -22,6 +24,20 @@ const PropertyView = ({ property, picture, user }) => {
   const { email, first_name, last_name, avatar } = user;
   const cleanPrice = new String(price).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const router = useRouter();
+
+  const handleDelete = async () => {
+    const alertText = "Cliquez sur OK pour confirmer la suppression de votre annonce.";
+    if (confirm(alertText)) {
+      try {
+        const response = await APIManager.deleteProperty(id);
+        router.push("/profile");
+      } catch (e) {
+        console.error(e.response);
+        setError("Oups ! Il y a eu un souci 😅");
+      }
+    }
+  }
 
   return (
     <div className={propertyViewWrapper}>
@@ -47,7 +63,10 @@ const PropertyView = ({ property, picture, user }) => {
         <h3>Descriptif du bien : </h3>
         <p>{description}</p>
         {currentUser?.id === user_id && (
+          <>
           <button className={btn} onClick={() => setModalIsOpen(true)}>Editer cette annonce</button>
+          <button className={`${btn} danger-bg`} onClick={() => handleDelete()}>Supprimer cette annonce</button>
+          </>
         )}
       </div>
 
