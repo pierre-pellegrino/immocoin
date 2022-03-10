@@ -32,7 +32,7 @@ const ProfilePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await APIManager.getPropertyFromUser(user.id);
+        const response = await APIManager.getPropertiesFromUser(user.id);
         setProperties(response.data.properties);
         setIsLoading(false);
       } catch (e) {
