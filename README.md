@@ -1,34 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align='center'>
 
-## Getting Started
+# ImmoCoin
 
-First, run the development server:
+[![THP Badge](https://raw.githubusercontent.com/Beygs/Beygs/main/assets/the-hacking-project-badge.svg)](https://www.thehackingproject.org/)
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)<br />
+[![nextjs badge](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+[![Logo](https://raw.githubusercontent.com/Beygs/Beygs/main/assets/Immocoincoin%20(1).png)](https://immocoincoin.herokuapp.com)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[Pitch du projet](#pitch-du-projet) | 
+[Liens Utiles](#liens-utiles) | 
+[Installation](#installation) | 
+[L'Equipe](#l-equipe) | 
+[Crédits et remerciements](#crédits-et-remerciements)
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+</div>
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Pitch du projet
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Marketplace d'immobilier, c'est très cool
 
-## Learn More
+## Liens Utiles
 
-To learn more about Next.js, take a look at the following resources:
+[Pour visiter le site, c'est par ici !](https://immocoincoin.herokuapp.com)<br />
+[Repo du backend](https://github.com/talmidiel/immocoin-api)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. `yarn`
+1. `yarn dev`
+1. Go to [http://localhost:3000](http://localhost:3000)
+1. Lezgo !
 
-## Deploy on Vercel
+## L'Equipe
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [Pierre Pellegrino](https://github.com/pierre-pellegrino)
+- [Anthony Charpenay](https://github.com/talmidiel)
+- [Timothée Gimbert](https://github.com/TimotheeGimbert)
+- [Boris Gilles](https://github.com/Beygs)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Crédits et remerciements
+
+Merci à [The Hacking Project](https://www.thehackingproject.org/) et à tous les moussaillons pour cette formation de qualité !

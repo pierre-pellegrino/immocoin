@@ -20,7 +20,7 @@ import { Oval } from 'react-loader-spinner';
 import Errors from "components/Errors";
 
 const ProfilePage = () => {
-  const [user] = useAtom(userAtom);
+  const [user, setUser] = useAtom(userAtom);
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const avatar = useRef();
@@ -32,7 +32,7 @@ const ProfilePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await APIManager.getPropertyFromUser(user.id);
+        const response = await APIManager.getPropertiesFromUser(user.id);
         setProperties(response.data.properties);
         setIsLoading(false);
       } catch (e) {
@@ -67,22 +67,15 @@ const ProfilePage = () => {
   }
 
   const handleSave = async () => {
-    const formObj = {
+    const data = {
       firstname: firstname,
       lastname: lastname,
-      avatar: avatar.current.files[0]
+      //avatar: avatar.current.files[0]
     }
-  
-    const data = new FormData();
-  
-    Object.keys(formObj).forEach((key) => {
-      data.append(key, formObj[key])
-    });
 
     try {
-      const response = await APIManager.editProfile(user.id, data);
-      console.log(response.data);
-      router.push(`/profile`);
+      const response = await APIManager.editProfile(data);
+      setUser(response.data)
       setModalIsOpen(false);
     } catch (error) {
       console.warn(error);
