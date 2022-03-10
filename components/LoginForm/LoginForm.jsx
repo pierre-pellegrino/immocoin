@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import { form, input, inputWrapper, btn } from "styles/form.module.scss";
 import APIManager from "pages/api/axiosMethods";
 import { useAtom } from "jotai";
@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import ValidationIcon from "components/ValidationIcon";
 import Errors from "components/Errors";
 
-const LoginForm = () => {
+const LoginForm = ({ redirected }) => {
   const email = useRef();
   const pwd = useRef();
   const [validEmail, setValidEmail] = useState(false);
@@ -17,9 +17,10 @@ const LoginForm = () => {
   const [isConnected] = useAtom(isConnectedAtom);
   const router = useRouter();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     isConnected && router.back();
-  }, [isConnected, router]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const emailValidation = () => {
     setServerErrors("");
@@ -48,7 +49,11 @@ const LoginForm = () => {
     try {
       const response = await APIManager.logIn(data);
       setUser(response.data);
-      router.push("/");
+      if (redirected) {
+        router.back();
+      } else {
+        router.push("/");
+      }
     } catch (error) {
       console.error(error.response)
       setServerErrors(error.response.data);
