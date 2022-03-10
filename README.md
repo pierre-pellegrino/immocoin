@@ -9,7 +9,7 @@
 [![Logo](https://raw.githubusercontent.com/Beygs/Beygs/main/assets/Immocoincoin.png)](https://immocoincoin.herokuapp.com)
 
 [Pitch du projet](#pitch-du-projet) | 
-[Live Site](#liens-utiles) | 
+[Liens Utiles](#liens-utiles) | 
 [Installation](#installation) | 
 [L'Equipe](#l-equipe) | 
 [Crédits et remerciements](#crédits-et-remerciements)
@@ -22,7 +22,7 @@ Marketplace d'immobilier, c'est très cool
 
 ## Liens Utiles
 
-[Pour visiter le site, c'est par ici !](https://immocoincoin.herokuapp.com)
+[Pour visiter le site, c'est par ici !](https://immocoincoin.herokuapp.com)<br />
 [Repo du backend](https://github.com/talmidiel/immocoin-api)
 
 ## Installation
