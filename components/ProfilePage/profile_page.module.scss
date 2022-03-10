@@ -23,6 +23,14 @@
       .profilePage__content__img {
         border-radius:50%;
         z-index: 1;
+
+        &__placeholder {
+          height: 128px;
+          width: 128px;
+          background-color: #eee;
+          border-radius: 50%;
+        }
+
         img {
           object-fit: cover;
           border-radius:50%;
