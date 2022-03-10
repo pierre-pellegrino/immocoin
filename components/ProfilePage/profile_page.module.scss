@@ -50,7 +50,7 @@
       align-items: center;
       // justify-content: center;
       flex-grow: 1;
-      max-height: calc(100vh - 213px - 108px);
+      height: calc(100vh - 213px - 108px);
       overflow-y: scroll;
       padding-bottom: 1em;
     }
